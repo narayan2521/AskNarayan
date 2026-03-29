@@ -56,7 +56,7 @@ function App() {
     switch (activeSection) {
       case 'about': return <About content={sectionData} darkMode={darkMode} />;
       case 'experience': return <Experience content={sectionData} darkMode={darkMode} />;
-      case 'skills': return <Skills content={sectionData} darkMode={darkMode} />;
+      case 'skills': return <Skills content={sectionData} darkMode={darkMode} onNavigate={handleNavClick} />;
       case 'projects': return <Projects content={sectionData} darkMode={darkMode} />;
       case 'education': return <Education content={sectionData} darkMode={darkMode} />;
       case 'certifications': return <Certifications content={sectionData} darkMode={darkMode} />;
@@ -96,8 +96,8 @@ function App() {
       {/* Main Content Area */}
       <main 
         className={`flex-1 h-full relative transition-all duration-500 ease-in-out flex flex-col pt-4 md:pt-6 px-4 md:px-6 pb-4 md:pb-6 ${
-          isSidebarCollapsed ? 'ml-20' : 'ml-64'
-        } ${isRightPanelOpen ? 'mr-[300px]' : 'mr-0'}`}
+          isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'
+        } ${isRightPanelOpen ? 'lg:mr-[300px]' : 'mr-0'} ml-0 mr-0 transition-[margin]`}
       >
         {/* Background Glows */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden">

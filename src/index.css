@@ -23,7 +23,7 @@
   }
   
   body {
-    @apply antialiased font-sans transition-colors duration-300;
+    @apply antialiased font-sans transition-colors duration-300 overflow-x-hidden;
   }
 }
 
@@ -38,6 +38,18 @@
   
   .glass-dark {
     @apply bg-slate-900/80 border-slate-700/50 shadow-2xl;
+  }
+  
+  .node-pill {
+    @apply relative px-6 py-3 rounded-full border backdrop-blur-3xl transition-all duration-500 flex items-center gap-3 select-none cursor-pointer;
+  }
+
+  .status-dot {
+    @apply w-2.5 h-2.5 rounded-full shadow-[0_0_12px_currentColor];
+  }
+
+  .glass-card-ai {
+    @apply bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl shadow-2xl;
   }
 
   .ai-container {

@@ -14,7 +14,7 @@ const RecentProjectsPanel = ({ isOpen, projects, darkMode, handleNavClick }) => 
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 300, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className={`fixed top-0 right-0 h-full w-[300px] z-20 transition-all duration-500 overflow-y-auto ${
+          className={`fixed top-0 right-0 h-full w-[300px] z-20 transition-all duration-500 overflow-y-auto hidden lg:block ${
             darkMode ? 'bg-[#0a0a0c] border-l border-white/5' : 'bg-[#f4f7f9] border-l border-slate-200'
           }`}
         >
