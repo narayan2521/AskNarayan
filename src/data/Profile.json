@@ -233,7 +233,7 @@
     }
   },
   "ui": {
-    "darkMode": false,
+    "darkMode": true,
     "transition": {
       "duration": 500,
       "easing": "ease-in-out"
