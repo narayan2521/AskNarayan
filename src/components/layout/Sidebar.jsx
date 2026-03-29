@@ -29,7 +29,7 @@ const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, section
     <motion.aside
       animate={{ width: isCollapsed ? 80 : 256 }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className={`fixed top-0 left-0 h-full z-30 transition-all duration-500 overflow-hidden ${
+      className={`fixed top-0 left-0 h-full z-30 transition-all duration-500 overflow-hidden hidden lg:flex ${
         darkMode ? 'bg-[#0a0a0c] border-r border-white/5' : 'bg-[#f4f7f9] border-r border-slate-200'
       }`}
     >
@@ -43,10 +43,11 @@ const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, section
               animate={{ opacity: 1 }}
               className="flex items-center space-x-3 overflow-hidden whitespace-nowrap"
             >
-              <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white font-black shadow-lg shadow-blue-500/20">
-                N
-              </div>
-              <h1 className="text-xl font-black tracking-tighter">Script</h1>
+              <img 
+                src="/ask-narayan-logo.png" 
+                alt="Narayan Prasad" 
+                className="w-full h-auto max-h-20 object-contain px-2"
+              />
             </motion.div>
           )}
           <button 

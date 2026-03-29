@@ -67,100 +67,103 @@
       }
     },
     "about": {
-      "title":"About",
-      "content":{
-             "title": "About Me",
-  "bio": "I'm a frontend developer with over 2 years of experience crafting high-performance, scalable web applications using modern frameworks like React, Vite, and Tailwind CSS. My journey started with curiosity, turned into consistent coding, and now drives my passion for building meaningful digital experiences.",
-  "paragraphs": [
-    "In my current role, I’ve built reusable component libraries, integrated APIs, debugged complex issues, and optimized UI performance across multiple client-facing projects. I'm especially strong in JavaScript and love finding the cleanest, most efficient solution to a problem.",
-    "I take pride in writing clean, maintainable code and staying up-to-date with best practices. Whether it's building a finance dashboard, a job automation tool, or a custom ROI calculator, I always aim for user-friendly interfaces and responsive designs.",
-    "Outside of coding, I’m self-motivated and constantly learning — right now I’m leveling up my skills to break into a higher package role. I’m not afraid to get my hands dirty, explore DevOps, or automate a few things if it helps the project scale."
-  ],
-  "technologies": [
-    "React", "JavaScript", "Tailwind CSS", "Vite", "Bootstrap", "HTML5", "CSS3",
-    "Git", "REST APIs", "Postman", "VSCode", "Debugging", "Performance Optimization"
-  ]
-      }
-  
-},
-   "experience":
-  {
-    "title": "Experience",
-    "content": [
-      {
-        "company": "Pixentia Solutions India Pvt Ltd",
-        "location": "India",
-        "roles": [
-          {
-            "role": "UI Team Lead",
-            "duration": "September 1, 2024 – Present",
-            "contributions": [
-              "Leading a team of 3 frontend developers to deliver high-quality UIs",
-              "Defined UI architecture and best practices for component development",
-              "Conducted code reviews, team mentoring, and sprint planning",
-              "Enhanced performance and accessibility of core interfaces",
-              "Worked cross-functionally with design and backend teams in Agile setup"
-            ],
-            "skills": ["Team Leadership", "Code Review", "Performance Optimization", "Agile","React","Redux","Git","GitHub","Tailwind CSS"]
-          }, 
-          {
-            "role": "Software Design Engineer - I",
-            "duration": "August 1, 2024 – September 1, 2024",
-            "contributions": [
-              "Built and maintained core components using React and JavaScript",
-              "Translated Figma/UX designs into production-ready UI",
-              "Collaborated with senior engineers to improve code quality and performance"
-            ],
-            "skills": ["React", "JavaScript", "Figma", "UI Development","React","Redux","Git","GitHub","Tailwind CSS"]
-          },
-          {
-            "role": "Software Trainee ",
-            "duration": "May 8, 2023 – August 1, 2024",
-            "contributions": [
-              "Learned and applied frontend fundamentals in real-world projects",
-              "Assisted in building internal tools using React and Tailwind CSS",
-              "Gained experience in version control (Git) and Agile methodologies"
-            ],
-            "skills": ["React", "HTML5","CSS3","JavaScript","Bootstrap","JQuery", "Git", "Agile","UI Development","Debugging","Deployment"]
-          },
-          {
-            "role": "Internship",
-  "duration": "May 8, 2022 – May 8, 2023",
-  "contributions": [
-    "Completed hands-on training in Java Full Stack development",
-    "Built CRUD-based web applications using Java, Spring Boot, and MySQL",
-    "Designed responsive frontend interfaces using HTML, CSS, and JavaScript",
-    "Integrated REST APIs and handled backend logic in Spring Boot",
-    "Gained experience in version control (Git) and Agile project workflows"
-  ],
-  "skills": ["Java", "Spring Boot", "MySQL", "HTML", "CSS", "JavaScript", "Git", "Agile"]
-          }
-          
+      "title": "About",
+      "content": {
+        "title": "About Me",
+        "bio": "I'm a frontend developer with over 2 years of experience crafting high-performance, scalable web applications using modern frameworks like React, Vite, and Tailwind CSS. My journey started with curiosity, turned into consistent coding, and now drives my passion for building meaningful digital experiences.",
+        "paragraphs": [
+          "In my current role, I’ve built reusable component libraries, integrated APIs, debugged complex issues, and optimized UI performance across multiple client-facing projects. I'm especially strong in JavaScript and love finding the cleanest, most efficient solution to a problem.",
+          "I take pride in writing clean, maintainable code and staying up-to-date with best practices. Whether it's building a finance dashboard, a job automation tool, or a custom ROI calculator, I always aim for user-friendly interfaces and responsive designs.",
+          "Outside of coding, I’m self-motivated and constantly learning — right now I’m leveling up my skills to break into a higher package role. I’m not afraid to get my hands dirty, explore DevOps, or automate a few things if it helps the project scale."
+        ],
+        "technologies": [
+          "React", "JavaScript", "Tailwind CSS", "Vite", "Bootstrap", "HTML5", "CSS3",
+          "Git", "REST APIs", "Postman", "VSCode", "Debugging", "Performance Optimization"
         ]
       }
-    ]
-  }
-,
+    },
+    "experience": {
+      "title": "Experience",
+      "content": [
+        {
+          "company": "Phenom Cloud pvt ltd",
+          "location": "India",
+          "link": "https://phenomecloud.com/",
+          "roles": [
+            {
+              "role": "UI Team Lead",
+              "duration": "September 1, 2024 – Present",
+              "contributions": [
+                "Leading a team of 3 frontend developers to deliver high-quality UIs",
+                "Defined UI architecture and best practices for component development",
+                "Conducted code reviews, team mentoring, and sprint planning",
+                "Enhanced performance and accessibility of core interfaces",
+                "Worked cross-functionally with design and backend teams in Agile setup"
+              ],
+              "skills": ["Team Leadership", "Code Review", "Performance Optimization", "Agile", "React", "Redux", "Git", "GitHub", "Tailwind CSS"]
+            }
+          ]
+        },
+        {
+          "company": "Pixentia Solutions India Pvt Ltd",
+          "location": "India",
+          "roles": [
+            {
+              "role": "Software Design Engineer - I",
+              "duration": "August 1, 2024 – September 1, 2024",
+              "contributions": [
+                "Built and maintained core components using React and JavaScript",
+                "Translated Figma/UX designs into production-ready UI",
+                "Collaborated with senior engineers to improve code quality and performance"
+              ],
+              "skills": ["React", "JavaScript", "Figma", "UI Development", "React", "Redux", "Git", "GitHub", "Tailwind CSS"]
+            },
+            {
+              "role": "Software Trainee ",
+              "duration": "May 8, 2023 – August 1, 2024",
+              "contributions": [
+                "Learned and applied frontend fundamentals in real-world projects",
+                "Assisted in building internal tools using React and Tailwind CSS",
+                "Gained experience in version control (Git) and Agile methodologies"
+              ],
+              "skills": ["React", "HTML5", "CSS3", "JavaScript", "Bootstrap", "JQuery", "Git", "Agile", "UI Development", "Debugging", "Deployment"]
+            },
+            {
+              "role": "Internship",
+              "duration": "May 8, 2022 – May 8, 2023",
+              "contributions": [
+                "Completed hands-on training in Java Full Stack development",
+                "Built CRUD-based web applications using Java, Spring Boot, and MySQL",
+                "Designed responsive frontend interfaces using HTML, CSS, and JavaScript",
+                "Integrated REST APIs and handled backend logic in Spring Boot",
+                "Gained experience in version control (Git) and Agile project workflows"
+              ],
+              "skills": ["Java", "Spring Boot", "MySQL", "HTML", "CSS", "JavaScript", "Git", "Agile"]
+            }
+          ]
+        }
+      ]
+    },
     "skills": {
       "title": "Skills",
       "content": {
         "Frontend": [
-    { "name": "HTML5", "icon": "FaHtml5", "color": "text-orange-500" },
-    { "name": "CSS3", "icon": "FaCss3Alt", "color": "text-blue-500" },
-    { "name": "JavaScript", "icon": "FaJs", "color": "text-yellow-400" },
-    { "name": "TypeScript", "icon": "SiTypescript", "color": "text-blue-600" },
-    { "name": "React", "icon": "FaReact", "color": "text-blue-400" },
-    { "name": "Redux", "icon": "SiRedux", "color": "text-purple-500" },
-    { "name": "Tailwind CSS", "icon": "SiTailwindcss", "color": "text-cyan-400" },
-    { "name": "Jest", "icon": "SiJest", "color": "text-red-600" }
-  ],
-  "Tools": [
-    { "name": "Git", "icon": "FaGitAlt", "color": "text-orange-600" },
-    { "name": "Figma", "icon": "FaFigma", "color": "text-purple-500" },
-    { "name": "npm", "icon": "FaNpm", "color": "text-red-500" },
-    { "name": "GitHub", "icon": "FaGithub", "color": "text-gray-800 dark:text-gray-200" },
-    { "name": "VS Code", "icon": "CustomIcon", "color": "text-blue-500" }
-  ],
+          { "name": "HTML5", "icon": "FaHtml5", "color": "text-orange-500", "description": "Expert in semantic structuring, ensuring accessibility and SEO optimization in modern web architectures." },
+          { "name": "CSS3", "icon": "FaCss3Alt", "color": "text-blue-500", "description": "Proficient in advanced layouts (Grid/Flexbox), animations, and scalable design systems using BEM and CSS-in-JS." },
+          { "name": "JavaScript", "icon": "FaJs", "color": "text-yellow-400", "description": "Mastery in ES6+, asynchronous programming, and DOM manipulation to create high-performance interactive experiences." },
+          { "name": "TypeScript", "icon": "SiTypescript", "color": "text-blue-600", "description": "Leveraging strongly typed patterns to build robust, maintainable, and error-free enterprise applications." },
+          { "name": "React", "icon": "FaReact", "color": "text-blue-400", "description": "Building complex, state-driven user interfaces using hooks, context API, and optimized component lifecycles." },
+          { "name": "Redux", "icon": "SiRedux", "color": "text-purple-500", "description": "Centralized state management architecture for predictable and scalable frontend data flow." },
+          { "name": "Tailwind CSS", "icon": "SiTailwindcss", "color": "text-cyan-400", "description": "Rapid UI development with a utility-first approach, ensuring consistency and high-speed delivery." },
+          { "name": "Jest", "icon": "SiJest", "color": "text-red-600", "description": "Ensuring application stability through comprehensive unit and integration testing suites." }
+        ],
+        "Tools": [
+          { "name": "Git", "icon": "FaGitAlt", "color": "text-orange-600", "description": "Advanced version control workflows including branching strategies, rebasing, and collaborative code reviews." },
+          { "name": "Figma", "icon": "FaFigma", "color": "text-purple-500", "description": "Bridging the gap between design and engineering with pixel-perfect asset translation and prototyping." },
+          { "name": "npm", "icon": "FaNpm", "color": "text-red-500", "description": "Efficient dependency management and custom package publishing for modular architectural components." },
+          { "name": "GitHub", "icon": "FaGithub", "color": "text-gray-800 dark:text-gray-200", "description": "Coordinating large-scale open-source and private repositories with CI/CD and project management tools." },
+          { "name": "VS Code", "icon": "SiVisualstudiocode", "color": "text-blue-500", "description": "Architecting a highly customized, high-performance development environment for maximum code velocity." }
+        ],
   "Other": [
     { "name": "Agile Methodologies" },
     { "name": "UI/UX Principles" },
@@ -230,6 +233,15 @@
         { "name": "Frontend Developer Bootcamp", "platform": "Platform" },
         { "name": "JavaScript Fundamentals", "platform": "Platform" }
       ]
+    },
+    "contact": {
+      "title": "Contact",
+      "content": {
+        "email": "narayanprasad2521@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/narayan-prasad-mohanty",
+        "github": "#",
+        "location": "India"
+      }
     }
   },
   "ui": {
