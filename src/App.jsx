@@ -4,7 +4,6 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 // Layout & Sections
 import Sidebar from './components/layout/Sidebar';
-import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Experience from './components/sections/Experience';
 import Skills from './components/sections/Skills';
@@ -53,9 +52,8 @@ function App() {
   };
 
   const renderSection = () => {
-    const sectionData = portfolioData.sections[activeSection] || portfolioData.sections.home;
+    const sectionData = portfolioData.sections[activeSection] || Object.values(portfolioData.sections)[0];
     switch (activeSection) {
-      case 'home': return <Hero content={sectionData} handleNavClick={handleNavClick} darkMode={darkMode} />;
       case 'about': return <About content={sectionData} darkMode={darkMode} />;
       case 'experience': return <Experience content={sectionData} darkMode={darkMode} />;
       case 'skills': return <Skills content={sectionData} darkMode={darkMode} />;
@@ -70,7 +68,7 @@ function App() {
         setMessages={setChatMessages} 
         handleNavClick={handleNavClick}
       />;
-      default: return <Hero content={portfolioData.sections.home} handleNavClick={handleNavClick} />;
+      default: return null;
     }
   };
 
@@ -81,7 +79,7 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 flex ${darkMode ? 'bg-[#0a0a0c] text-slate-100' : 'bg-[#f4f7f9] text-slate-900'}`}>
+    <div className={`h-screen overflow-hidden transition-colors duration-500 flex ${darkMode ? 'bg-[#0a0a0c] text-slate-100' : 'bg-[#f4f7f9] text-slate-900'}`}>
       
       {/* Sidebar Component */}
       <Sidebar 
@@ -97,7 +95,7 @@ function App() {
 
       {/* Main Content Area */}
       <main 
-        className={`flex-1 min-h-screen relative transition-all duration-500 ease-in-out flex flex-col pt-4 md:pt-6 px-4 md:px-6 pb-4 md:pb-6 ${
+        className={`flex-1 h-full relative transition-all duration-500 ease-in-out flex flex-col pt-4 md:pt-6 px-4 md:px-6 pb-4 md:pb-6 ${
           isSidebarCollapsed ? 'ml-20' : 'ml-64'
         } ${isRightPanelOpen ? 'mr-[300px]' : 'mr-0'}`}
       >
@@ -116,7 +114,7 @@ function App() {
           <header className="px-8 py-6 flex items-center justify-between border-b border-white/10 dark:border-white/5">
             <div className="flex items-center space-x-4">
               <h2 className="text-xl font-black tracking-tight capitalize select-none opacity-80">
-                {activeSection === 'home' ? 'Home' : (activeSection === 'chat' ? 'AI Assistant' : activeSection)}
+                {activeSection === 'chat' ? 'AI Assistant' : activeSection}
               </h2>
             </div>
             
@@ -131,7 +129,7 @@ function App() {
           </header>
 
           {/* Content Scroll Area */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden p-6 md:p-10 custom-scrollbar">
+          <div className={`flex-1 overflow-x-hidden min-h-0 custom-scrollbar ${activeSection === 'chat' ? 'overflow-hidden flex flex-col' : 'overflow-y-auto p-6 md:p-10'}`}>
             <AnimatePresence initial={false} mode="wait" custom={direction}>
               <motion.div
                 key={pageIndex}

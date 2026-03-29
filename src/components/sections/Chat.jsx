@@ -92,9 +92,9 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full max-w-4xl mx-auto w-full">
+    <div className="flex-1 flex flex-col h-full max-w-4xl mx-auto w-full overflow-hidden">
       {/* Chat Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-6 custom-scrollbar">
         <AnimatePresence initial={false}>
           {messages.map((msg, index) => (
             <motion.div
