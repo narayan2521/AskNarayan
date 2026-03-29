@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: 'Outfit', sans-serif;
+  
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  
+  /* Refined Glassmorphism Tokens for AI Chat Style */
+  --glass-bg-light: rgba(255, 255, 255, 0.85);
+  --glass-bg-dark: rgba(17, 24, 39, 0.8);
+  --glass-border-light: rgba(255, 255, 255, 0.4);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
+
+  --shadow-ai: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+  --shadow-ai-dark: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased font-sans transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl border-white/20 dark:border-white/10;
+  }
+  
+  .glass-light {
+    @apply bg-white/80 border-slate-200/50;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-900/80 border-slate-700/50 shadow-2xl;
+  }
+
+  .ai-container {
+    @apply rounded-[2rem] border overflow-hidden transition-all duration-500;
+  }
+
+  .ai-input {
+    @apply w-full bg-slate-100 dark:bg-slate-800/50 px-6 py-4 rounded-2xl border border-transparent focus:border-blue-500/50 focus:bg-white dark:focus:bg-slate-800 outline-none transition-all duration-300;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-5xl font-black mb-8 tracking-tighter;
+  }
+  
+  .nav-button {
+    @apply w-full text-left p-3 rounded-2xl transition-all duration-300 flex items-center space-x-3;
+  }
+}
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+}
