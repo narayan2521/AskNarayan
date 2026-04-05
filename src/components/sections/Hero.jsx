@@ -11,7 +11,7 @@ const SuggestionTile = ({ icon: Icon, title, subtitle, onClick, color }) => (
     whileHover={{ y: -6, scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
     onClick={onClick}
-    className="group relative flex items-center justify-between p-7 rounded-[2rem] border transition-all duration-500 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/5 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 text-left w-full h-full overflow-hidden"
+    className="group relative flex items-center justify-between p-5 md:p-7 rounded-2xl md:rounded-[2rem] border transition-all duration-500 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/5 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 text-left w-full h-full overflow-hidden"
   >
     <div className={`absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-10 group-hover:opacity-20 transition-opacity ${color}`} />
     
@@ -20,8 +20,8 @@ const SuggestionTile = ({ icon: Icon, title, subtitle, onClick, color }) => (
         <Icon size={24} />
       </div>
       <div>
-        <h4 className="text-xl font-black mb-1 tracking-tight">{title}</h4>
-        <p className="text-sm opacity-50 font-medium leading-relaxed">{subtitle}</p>
+        <h4 className="text-lg md:text-xl font-black mb-1 tracking-tight">{title}</h4>
+        <p className="text-[10px] md:text-sm opacity-50 font-medium leading-relaxed">{subtitle}</p>
       </div>
     </div>
     
@@ -72,10 +72,10 @@ const Hero = ({ content, handleNavClick, darkMode }) => {
         <motion.div
            initial={{ opacity: 0, scale: 0.9 }}
            animate={{ opacity: 1, scale: 1 }}
-           className="relative inline-block mb-10"
+           className="relative inline-block mb-6 md:mb-10"
         >
            <div className="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-full opacity-60"></div>
-           <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-[2.5rem] bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center p-6 shadow-2xl shadow-blue-500/30">
+           <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-[2.5rem] bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center p-5 md:p-6 shadow-2xl shadow-blue-500/30">
              <FiZap className="w-full h-full text-white" />
            </div>
         </motion.div>
@@ -84,12 +84,12 @@ const Hero = ({ content, handleNavClick, darkMode }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-6"
+          className="space-y-4 md:space-y-6"
         >
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight bg-clip-text text-transparent bg-gradient-to-b from-slate-900 via-slate-700 to-slate-500 dark:from-white dark:via-blue-100 dark:to-slate-400">
+          <h1 className="text-3xl xs:text-5xl md:text-7xl font-black tracking-tighter leading-tight bg-clip-text text-transparent bg-gradient-to-b from-slate-900 via-slate-700 to-slate-500 dark:from-white dark:via-blue-100 dark:to-slate-400">
             Welcome to Script
           </h1>
-          <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-2xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed px-4">
             I am Narayan. A Software Design Engineer. How can I assist you today? 
             Not sure where to start?
           </p>
@@ -101,7 +101,7 @@ const Hero = ({ content, handleNavClick, darkMode }) => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+        className="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8"
       >
         {suggestions.map((item, idx) => (
           <SuggestionTile

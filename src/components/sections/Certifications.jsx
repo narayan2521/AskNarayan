@@ -8,7 +8,7 @@ const Certifications = ({ content, darkMode }) => {
     <div className="max-w-4xl mx-auto py-20 px-4">
       <h2 className="section-title text-center mb-16">{content.title}</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-20 md:pb-0">
         {content.content.map((cert, idx) => (
           <motion.div
             key={idx}

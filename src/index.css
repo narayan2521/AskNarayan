@@ -74,10 +74,10 @@
   --foreground: #0f172a;
 }
 
-/* Custom Scrollbar */
+/* Scrollbar Styles */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -85,23 +85,61 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.2);
-  border-radius: 20px;
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.4);
+  background: rgba(59, 130, 246, 0.4);
 }
 
-/* Animations */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-15px) rotate(5deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
+@keyframes fall {
+  0% { transform: translateY(-10vh) translateX(0) scale(0); opacity: 0; }
+  20% { opacity: 0.6; transform: translateY(20vh) translateX(10px) scale(1); }
+  80% { opacity: 0.6; transform: translateY(80vh) translateX(-10px) scale(1); }
+  100% { transform: translateY(110vh) translateX(0) scale(0); opacity: 0; }
+}
+
+.grid-background {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
 .animate-float {
   animation: float 5s ease-in-out infinite;
+}
+
+.animate-fall {
+  animation: fall var(--fall-duration, 10s) linear infinite;
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+.text-glow-white {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .dark {

@@ -6,6 +6,12 @@ const RecentProjectsPanel = ({ isOpen, projects, darkMode, handleNavClick }) => 
   // Take top 3 projects from the list
   const recentProjects = projects.slice(0, 3);
   
+  const themeColors = {
+    blue: "text-blue-500 bg-blue-500/10 border-blue-500/20 group-hover:border-blue-500",
+    purple: "text-purple-500 bg-purple-500/10 border-purple-500/20 group-hover:border-purple-500",
+    emerald: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20 group-hover:border-emerald-500"
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -35,17 +41,26 @@ const RecentProjectsPanel = ({ isOpen, projects, darkMode, handleNavClick }) => 
                   whileHover={{ y: -5 }}
                   onClick={() => handleNavClick('projects')}
                   className={`group p-4 rounded-2xl border cursor-pointer transition-all duration-300 ${
-                    darkMode ? 'bg-slate-900/50 border-white/5 hover:border-blue-500/50 hover:bg-slate-800' : 'bg-white border-slate-200 hover:border-blue-500/50 hover:shadow-xl shadow-slate-200/50'
-                  }`}
+                    darkMode 
+                      ? 'bg-slate-900/50 border-white/5 hover:bg-slate-800' 
+                      : 'bg-white border-slate-200 hover:shadow-xl shadow-slate-200/50'
+                  } ${project.color === 'blue' ? 'hover:border-blue-500/50' : project.color === 'purple' ? 'hover:border-purple-500/50' : 'hover:border-emerald-500/50'}`}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500">
+                    <div className={`p-2 rounded-lg transition-colors ${themeColors[project.color || 'blue']}`}>
                       <FiLayout size={18} />
                     </div>
-                    <FiChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity translate-x-1 group-hover:translate-x-0" />
+                    <div className="flex flex-col items-end">
+                      <FiChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity translate-x-1 group-hover:translate-x-0 mb-1" />
+                      <span className={`text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded border ${
+                        darkMode ? 'border-white/10 text-slate-500' : 'border-slate-100 text-slate-400'
+                      }`}>
+                        {project.category}
+                      </span>
+                    </div>
                   </div>
                   
-                  <h4 className="font-bold text-sm mb-2">{project.title}</h4>
+                  <h4 className="font-bold text-sm mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h4>
                   <p className="text-[10px] opacity-50 line-clamp-2 leading-relaxed">
                     {project.description}
                   </p>

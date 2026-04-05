@@ -3,8 +3,14 @@
     "name": "Narayan",
     "title": "Software Design Engineer - I",
     "socials": [
-      { "icon": "linkedin", "link": "https://www.linkedin.com/in/narayan-prasad-mohanty" },
-      { "icon": "github", "link": "#" }
+      {
+        "icon": "linkedin",
+        "link": "https://www.linkedin.com/in/narayan-prasad-mohanty"
+      },
+      {
+        "icon": "github",
+        "link": "#"
+      }
     ]
   },
   "sections": {
@@ -21,45 +27,96 @@
         ],
         "qa": [
           {
-            "keywords": ["qualification", "degree", "btech", "college", "university", "education"],
+            "keywords": [
+              "qualification",
+              "degree",
+              "btech",
+              "college",
+              "university",
+              "education"
+            ],
             "answer": "Narayan holds a **B.Tech in Computer Science Engineering** from Nalanda Institute of Technology, Bhubaneswar (2022). He graduated with an impressive 80% score.",
             "redirect": "education"
           },
           {
-            "keywords": ["lead", "leadership", "team", "management", "success", "quality"],
+            "keywords": [
+              "lead",
+              "leadership",
+              "team",
+              "management",
+              "success",
+              "quality"
+            ],
             "answer": "As a **UI Team Lead**, Narayan manages a team of 3 developers. After consistently delivering high-quality work on time, he was given the chance to lead multiple projects, maintaining a high success rate and excellent stakeholder feedback.",
             "redirect": "experience"
           },
           {
-            "keywords": ["experience", "work", "job", "career"],
+            "keywords": [
+              "experience",
+              "work",
+              "job",
+              "career"
+            ],
             "answer": "Narayan has over 2 years of experience in frontend development. He is currently a UI Team Lead at Pixentia Solutions, where he leads a team of 3 developers and defines UI architecture using React and Tailwind CSS.",
             "redirect": "experience"
           },
           {
-            "keywords": ["tech", "stack", "skills", "technologies"],
+            "keywords": [
+              "tech",
+              "stack",
+              "skills",
+              "technologies"
+            ],
             "answer": "His core tech stack includes **React**, **JavaScript (ES6+)**, **Tailwind CSS**, and **Vite**. He also has experience with Redux, TypeScript, and Java/Spring Boot from his internship.",
             "redirect": "skills"
           },
           {
-            "keywords": ["typescript", "ts", "performance", "optimization", "speed"],
+            "keywords": [
+              "typescript",
+              "ts",
+              "performance",
+              "optimization",
+              "speed"
+            ],
             "answer": "Narayan is proficient in **TypeScript** for building scalable apps and specializes in **UI performance optimization** (lazy loading, code splitting, memoization) to ensure a smooth user experience.",
             "redirect": "skills"
           },
           {
-            "keywords": ["freelance", "hire", "work together", "project", "opportunity"],
+            "keywords": [
+              "freelance",
+              "hire",
+              "work together",
+              "project",
+              "opportunity"
+            ],
             "answer": "Yes! Narayan is open to discussing interesting projects. You can reach out via the Contact section or email him at **narayanprasad2521@gmail.com** to discuss collaboration."
           },
           {
-            "keywords": ["contact", "email", "reach", "message", "linkedin"],
+            "keywords": [
+              "contact",
+              "email",
+              "reach",
+              "message",
+              "linkedin"
+            ],
             "answer": "You can reach Narayan via email at **narayanprasad2521@gmail.com** or connect with him on LinkedIn at [linkedin.com/in/narayan-prasad-mohanty](https://www.linkedin.com/in/narayan-prasad-mohanty).",
             "redirect": "contact"
           },
           {
-            "keywords": ["strengths", "best at", "why hire"],
+            "keywords": [
+              "strengths",
+              "best at",
+              "why hire"
+            ],
             "answer": "Narayan excels at writing clean, maintainable code and building high-performance UIs. He is a self-motivated learner, a strong team leader, and has a deep understanding of modern frontend ecosystems."
           },
           {
-            "keywords": ["location", "where", "based", "india"],
+            "keywords": [
+              "location",
+              "where",
+              "based",
+              "india"
+            ],
             "answer": "Narayan is based in **India** and is open to both remote roles and relocation for the right opportunity."
           }
         ],
@@ -77,8 +134,19 @@
           "Outside of coding, I’m self-motivated and constantly learning — right now I’m leveling up my skills to break into a higher package role. I’m not afraid to get my hands dirty, explore DevOps, or automate a few things if it helps the project scale."
         ],
         "technologies": [
-          "React", "JavaScript", "Tailwind CSS", "Vite", "Bootstrap", "HTML5", "CSS3",
-          "Git", "REST APIs", "Postman", "VSCode", "Debugging", "Performance Optimization"
+          "React",
+          "JavaScript",
+          "Tailwind CSS",
+          "Vite",
+          "Bootstrap",
+          "HTML5",
+          "CSS3",
+          "Git",
+          "REST APIs",
+          "Postman",
+          "VSCode",
+          "Debugging",
+          "Performance Optimization"
         ]
       }
     },
@@ -100,7 +168,17 @@
                 "Enhanced performance and accessibility of core interfaces",
                 "Worked cross-functionally with design and backend teams in Agile setup"
               ],
-              "skills": ["Team Leadership", "Code Review", "Performance Optimization", "Agile", "React", "Redux", "Git", "GitHub", "Tailwind CSS"]
+              "skills": [
+                "Team Leadership",
+                "Code Review",
+                "Performance Optimization",
+                "Agile",
+                "React",
+                "Redux",
+                "Git",
+                "GitHub",
+                "Tailwind CSS"
+              ]
             }
           ]
         },
@@ -116,7 +194,17 @@
                 "Translated Figma/UX designs into production-ready UI",
                 "Collaborated with senior engineers to improve code quality and performance"
               ],
-              "skills": ["React", "JavaScript", "Figma", "UI Development", "React", "Redux", "Git", "GitHub", "Tailwind CSS"]
+              "skills": [
+                "React",
+                "JavaScript",
+                "Figma",
+                "UI Development",
+                "React",
+                "Redux",
+                "Git",
+                "GitHub",
+                "Tailwind CSS"
+              ]
             },
             {
               "role": "Software Trainee ",
@@ -126,7 +214,19 @@
                 "Assisted in building internal tools using React and Tailwind CSS",
                 "Gained experience in version control (Git) and Agile methodologies"
               ],
-              "skills": ["React", "HTML5", "CSS3", "JavaScript", "Bootstrap", "JQuery", "Git", "Agile", "UI Development", "Debugging", "Deployment"]
+              "skills": [
+                "React",
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "Bootstrap",
+                "JQuery",
+                "Git",
+                "Agile",
+                "UI Development",
+                "Debugging",
+                "Deployment"
+              ]
             },
             {
               "role": "Internship",
@@ -138,7 +238,16 @@
                 "Integrated REST APIs and handled backend logic in Spring Boot",
                 "Gained experience in version control (Git) and Agile project workflows"
               ],
-              "skills": ["Java", "Spring Boot", "MySQL", "HTML", "CSS", "JavaScript", "Git", "Agile"]
+              "skills": [
+                "Java",
+                "Spring Boot",
+                "MySQL",
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "Git",
+                "Agile"
+              ]
             }
           ]
         }
@@ -148,90 +257,187 @@
       "title": "Skills",
       "content": {
         "Frontend": [
-          { "name": "HTML5", "icon": "FaHtml5", "color": "text-orange-500", "description": "Expert in semantic structuring, ensuring accessibility and SEO optimization in modern web architectures." },
-          { "name": "CSS3", "icon": "FaCss3Alt", "color": "text-blue-500", "description": "Proficient in advanced layouts (Grid/Flexbox), animations, and scalable design systems using BEM and CSS-in-JS." },
-          { "name": "JavaScript", "icon": "FaJs", "color": "text-yellow-400", "description": "Mastery in ES6+, asynchronous programming, and DOM manipulation to create high-performance interactive experiences." },
-          { "name": "TypeScript", "icon": "SiTypescript", "color": "text-blue-600", "description": "Leveraging strongly typed patterns to build robust, maintainable, and error-free enterprise applications." },
-          { "name": "React", "icon": "FaReact", "color": "text-blue-400", "description": "Building complex, state-driven user interfaces using hooks, context API, and optimized component lifecycles." },
-          { "name": "Redux", "icon": "SiRedux", "color": "text-purple-500", "description": "Centralized state management architecture for predictable and scalable frontend data flow." },
-          { "name": "Tailwind CSS", "icon": "SiTailwindcss", "color": "text-cyan-400", "description": "Rapid UI development with a utility-first approach, ensuring consistency and high-speed delivery." },
-          { "name": "Jest", "icon": "SiJest", "color": "text-red-600", "description": "Ensuring application stability through comprehensive unit and integration testing suites." }
+          {
+            "name": "HTML5",
+            "icon": "FaHtml5",
+            "color": "text-orange-500",
+            "description": "Expert in semantic structuring, ensuring accessibility and SEO optimization in modern web architectures."
+          },
+          {
+            "name": "CSS3",
+            "icon": "FaCss3Alt",
+            "color": "text-blue-500",
+            "description": "Proficient in advanced layouts (Grid/Flexbox), animations, and scalable design systems using BEM and CSS-in-JS."
+          },
+          {
+            "name": "JavaScript",
+            "icon": "FaJs",
+            "color": "text-yellow-400",
+            "description": "Mastery in ES6+, asynchronous programming, and DOM manipulation to create high-performance interactive experiences."
+          },
+          {
+            "name": "TypeScript",
+            "icon": "SiTypescript",
+            "color": "text-blue-600",
+            "description": "Leveraging strongly typed patterns to build robust, maintainable, and error-free enterprise applications."
+          },
+          {
+            "name": "React",
+            "icon": "FaReact",
+            "color": "text-blue-400",
+            "description": "Building complex, state-driven user interfaces using hooks, context API, and optimized component lifecycles."
+          },
+          {
+            "name": "Redux",
+            "icon": "SiRedux",
+            "color": "text-purple-500",
+            "description": "Centralized state management architecture for predictable and scalable frontend data flow."
+          },
+          {
+            "name": "Tailwind CSS",
+            "icon": "SiTailwindcss",
+            "color": "text-cyan-400",
+            "description": "Rapid UI development with a utility-first approach, ensuring consistency and high-speed delivery."
+          },
+          {
+            "name": "Jest",
+            "icon": "SiJest",
+            "color": "text-red-600",
+            "description": "Ensuring application stability through comprehensive unit and integration testing suites."
+          }
         ],
         "Tools": [
-          { "name": "Git", "icon": "FaGitAlt", "color": "text-orange-600", "description": "Advanced version control workflows including branching strategies, rebasing, and collaborative code reviews." },
-          { "name": "Figma", "icon": "FaFigma", "color": "text-purple-500", "description": "Bridging the gap between design and engineering with pixel-perfect asset translation and prototyping." },
-          { "name": "npm", "icon": "FaNpm", "color": "text-red-500", "description": "Efficient dependency management and custom package publishing for modular architectural components." },
-          { "name": "GitHub", "icon": "FaGithub", "color": "text-gray-800 dark:text-gray-200", "description": "Coordinating large-scale open-source and private repositories with CI/CD and project management tools." },
-          { "name": "VS Code", "icon": "SiVisualstudiocode", "color": "text-blue-500", "description": "Architecting a highly customized, high-performance development environment for maximum code velocity." }
+          {
+            "name": "Git",
+            "icon": "FaGitAlt",
+            "color": "text-orange-600",
+            "description": "Advanced version control workflows including branching strategies, rebasing, and collaborative code reviews."
+          },
+          {
+            "name": "Figma",
+            "icon": "FaFigma",
+            "color": "text-purple-500",
+            "description": "Bridging the gap between design and engineering with pixel-perfect asset translation and prototyping."
+          },
+          {
+            "name": "npm",
+            "icon": "FaNpm",
+            "color": "text-red-500",
+            "description": "Efficient dependency management and custom package publishing for modular architectural components."
+          },
+          {
+            "name": "GitHub",
+            "icon": "FaGithub",
+            "color": "text-gray-800 dark:text-gray-200",
+            "description": "Coordinating large-scale open-source and private repositories with CI/CD and project management tools."
+          },
+          {
+            "name": "VS Code",
+            "icon": "SiVisualstudiocode",
+            "color": "text-blue-500",
+            "description": "Architecting a highly customized, high-performance development environment for maximum code velocity."
+          }
         ],
-  "Other": [
-    { "name": "Agile Methodologies" },
-    { "name": "UI/UX Principles" },
-    { "name": "Responsive Design" },
-    { "name": "Performance Optimization" },
-    { "name": "Code Review" },
-    { "name": "Team Leadership" }
-  ]
+        "Other": [
+          {
+            "name": "Agile Methodologies"
+          },
+          {
+            "name": "UI/UX Principles"
+          },
+          {
+            "name": "Responsive Design"
+          },
+          {
+            "name": "Performance Optimization"
+          },
+          {
+            "name": "Code Review"
+          },
+          {
+            "name": "Team Leadership"
+          }
+        ]
       }
     },
-  "education": {
-  "title": "Education",
-  "content": [
-    {
-      "degree": "B.Tech in Computer Science Engineering",
-      "university": "Nalanda Institute of Technology, Bhubaneswar",
-      "year": "2022",
-      "percentage": "80"
-    }, 
-    {
-      "degree": "Secondary School Certificate (SSC)",
-      "university": "Pattamundai College, Pattamundai, Kendrapara",
-      "year": "2018",
-      "percentage": "51"
-    },{
-      "degree": "Higher Secondary Certificate (HSC)",
-      "university": "Chakradhar High School, Singiri",
-      "year": "2016",
-      "percentage": "75"
-    }
-    
-  ]
-}
-,
+    "education": {
+      "title": "Education",
+      "content": [
+        {
+          "degree": "B.Tech in Computer Science Engineering",
+          "university": "Nalanda Institute of Technology, Bhubaneswar",
+          "year": "2022",
+          "percentage": "80"
+        },
+        {
+          "degree": "Secondary School Certificate (SSC)",
+          "university": "Pattamundai College, Pattamundai, Kendrapara",
+          "year": "2018",
+          "percentage": "51"
+        },
+        {
+          "degree": "Higher Secondary Certificate (HSC)",
+          "university": "Chakradhar High School, Singiri",
+          "year": "2016",
+          "percentage": "75"
+        }
+      ]
+    },
     "projects": {
       "title": "Projects",
       "content": [
         {
-          "title": "QuantumFlow Dashboard",
-          "description": "A high-performance analytics dashboard for real-time data streaming, built with React and D3.js.",
-          "tech": ["React", "D3.js", "WebSockets", "Tailwind"],
+          "title": "Custom ROI Calculator",
+          "description": "A high-precision business tool for calculating Return on Investment, featuring interactive modeling and data visualization.",
+          "tech": [
+            "React",
+            "Chart.js",
+            "Tailwind CSS",
+            "Mathematical Logic"
+          ],
           "link": "#",
           "github": "#",
-          "image": "https://placehold.co/600x400/1e293b/white?text=QuantumFlow+Dashboard"
+          "image": "https://placehold.co/600x400/3b82f6/white?text=ROI+Calculator"
         },
         {
-          "title": "Nexus API Gateway",
-          "description": "A lightweight, secure API gateway for microservices architecture with built-in rate limiting and logging.",
-          "tech": ["Node.js", "Express", "Redis", "Docker"],
+          "title": "Job Automation Tool",
+          "description": "An efficiency-focused platform for automating job application workflows and tracking recruitment status in real-time.",
+          "tech": [
+            "React",
+            "Node.js",
+            "PostgreSQL",
+            "Automation"
+          ],
           "link": "#",
           "github": "#",
-          "image": "https://placehold.co/600x400/1e293b/white?text=Nexus+API+Gateway"
+          "image": "https://placehold.co/600x400/8b5cf6/white?text=Job+Automation"
         },
         {
-          "title": "VividUI Component Lab",
-          "description": "An open-source library of highly accessible, themed UI components for modern web applications.",
-          "tech": ["TypeScript", "Stencil.js", "Storybook", "CSS-in-JS"],
+          "title": "Finance Dashboard",
+          "description": "A comprehensive financial management system with secure data handling and insightful budget analytics.",
+          "tech": [
+            "React",
+            "Redux",
+            "Firebase",
+            "Data Analytics"
+          ],
           "link": "#",
           "github": "#",
-          "image": "https://placehold.co/600x400/1e293b/white?text=VividUI+Lab"
+          "image": "https://placehold.co/600x400/10b981/white?text=Finance+Dashboard"
         }
       ]
     },
     "certifications": {
       "title": "Certifications",
       "content": [
-        { "name": "Frontend Developer Bootcamp", "platform": "Platform" },
-        { "name": "JavaScript Fundamentals", "platform": "Platform" }
+        {
+          "name": "Frontend Developer Bootcamp",
+          "platform": "JSpider, Bengaluru"
+        },
+        {
+          "name": "JavaScript Fundamentals",
+          "platform": "CAC, Bhubaneswar"
+        }
       ]
     },
     "contact": {
