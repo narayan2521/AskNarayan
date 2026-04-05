@@ -18,12 +18,12 @@ const ExperienceNode = ({ exp, company, color = "blue", side = "left", link }) =
   };
 
   return (
-    <div className={`relative flex items-center justify-center w-full mb-32 last:mb-0 ${
-      side === "right" ? "md:flex-row-reverse" : "md:flex-row"
-    } flex-col`}>
+    <div className={`relative flex items-center justify-center w-full mb-16 md:mb-32 last:mb-0 md:flex-row flex-col ${
+      side === "right" ? "md:flex-row-reverse" : ""
+    }`}>
       
       {/* Node Content (Pill/Card) */}
-      <div className={`w-full md:w-1/2 flex ${side === "right" ? "md:justify-start" : "md:justify-end"}`}>
+      <div className={`w-full md:w-1/2 flex justify-center ${side === "right" ? "md:justify-start" : "md:justify-end"}`}>
         <motion.div
            layout
            initial={{ opacity: 0, x: side === "left" ? -50 : 50 }}
@@ -38,15 +38,15 @@ const ExperienceNode = ({ exp, company, color = "blue", side = "left", link }) =
              layout: { duration: 0.6, ease: [0.23, 1, 0.32, 1] },
              borderRadius: { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
            }}
-           className={`node-pill min-w-[300px] md:max-w-[500px] shadow-2xl z-20 flex-col !items-stretch overflow-hidden ${themeColors[color]} ${
+           className={`node-pill w-[calc(100%-32px)] md:w-full md:max-w-[500px] mx-auto md:mx-0 shadow-2xl z-20 flex-col !items-stretch overflow-hidden ${themeColors[color]} ${
              side === "left" ? "md:mr-16" : "md:ml-16"
            }`}
         >
           {/* Header Area (Always Visible) */}
           <div className="flex items-center gap-4 p-5">
              <div className={`status-dot shrink-0 ${dotColors[color]}`} />
-             <div className="flex-1">
-                <h4 className="font-black text-base uppercase tracking-wider">{exp.role}</h4>
+             <div className="flex-1 min-w-0">
+                <h4 className="font-black text-xs xs:text-base uppercase tracking-wider truncate">{exp.role}</h4>
                 <div className="flex flex-col md:flex-row md:items-center justify-between mt-1 gap-2">
                   {link ? (
                     <a 
@@ -111,24 +111,24 @@ const ExperienceNode = ({ exp, company, color = "blue", side = "left", link }) =
   );
 };
 
-const Experience = ({ content, darkMode }) => {
+const Experience = ({ content, darkMode, isRightPanelOpen, isSidebarCollapsed }) => {
   const colors = ["blue", "purple", "emerald"];
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto py-16 px-8 custom-scrollbar h-full overflow-y-auto overflow-x-hidden">
+    <div className="w-full max-w-7xl mx-auto py-10 md:py-16 px-4 md:px-8 custom-scrollbar h-full overflow-y-auto overflow-x-hidden">
       
       {/* Header */}
-      <div className="mb-32 text-center">
+      <div className={`mb-16 md:mb-32 text-center ${isRightPanelOpen ? 'max-w-[80%] mx-auto' : ''}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-blue-500 text-[11px] font-black tracking-[0.4em] uppercase mb-4 block">Professional Timeline</span>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
+          <span className="text-blue-500 text-[9px] md:text-[11px] font-black tracking-[0.4em] uppercase mb-4 block">Professional Timeline</span>
+          <h2 className="text-3xl xs:text-5xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6">
             Career <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">Flow</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-base text-slate-500 font-medium opacity-80 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-sm md:text-base text-slate-500 font-medium opacity-80 leading-relaxed px-4">
             A visual flow of my professional journey, highlighting key milestones, architectural decisions, and high-impact contributions.
           </p>
         </motion.div>
@@ -138,7 +138,7 @@ const Experience = ({ content, darkMode }) => {
         {/* Central Vertical Spine (Desktop only) */}
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-purple-500/20 to-transparent hidden md:block" />
 
-        <div className="relative space-y-40">
+        <div className="relative space-y-16 md:space-y-40">
           {content.content.map((company, cIdx) => (
             <div key={cIdx}>
                 {company.roles.map((role, rIdx) => {

@@ -162,7 +162,7 @@ const TechEcosystem = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-[700px] overflow-hidden bg-slate-950 rounded-[3rem] border border-blue-500/10 cursor-grab active:cursor-grabbing shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]"
+      className="relative w-full h-[400px] md:h-[700px] overflow-hidden bg-slate-950 rounded-3xl md:rounded-[3rem] border border-blue-500/10 cursor-grab active:cursor-grabbing shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]"
     >
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-slate-950 to-slate-950 opacity-100" />
@@ -175,8 +175,8 @@ const TechEcosystem = () => {
         </svg>
       </div>
 
-      <div className="absolute top-6 left-6 z-30 p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 text-[10px] uppercase tracking-widest font-black text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.3)]">
-        Drag to Pan • Ctrl + Wheel to Zoom
+      <div className="absolute top-4 left-4 md:top-6 md:left-6 z-30 p-3 md:p-4 bg-white/5 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/10 text-[8px] md:text-[10px] uppercase tracking-widest font-black text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.3)]">
+        Drag • Ctrl + Wheel Zoom
       </div>
 
       <motion.div 
@@ -232,7 +232,7 @@ const About = ({ content }) => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6 custom-scrollbar h-full overflow-y-auto overflow-x-hidden">
+    <div className="max-w-6xl mx-auto py-8 md:py-12 px-4 md:px-6 custom-scrollbar h-full overflow-y-auto overflow-x-hidden">
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -245,14 +245,14 @@ const About = ({ content }) => {
             <h4 className="flex items-center gap-2 text-xl font-medium text-blue-500">
               <span className="text-2xl animate-bounce">👋</span> Hey There!
             </h4>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-              My Name Is <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 decoration-8 underline-offset-4 underline decoration-blue-500/20">Narayan</span>, 
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-black tracking-tight leading-tight px-1">
+              My Name Is <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 decoration-4 md:decoration-8 underline-offset-4 underline decoration-blue-500/20">Narayan</span>, 
               <br className="hidden md:block" />
               UI Team Lead & Engineer.
             </h1>
           </motion.div>
 
-          <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-400 dark:text-slate-300 leading-relaxed max-w-2xl">
+          <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-400 dark:text-slate-300 leading-relaxed max-w-2xl px-1">
             {content.content.bio}
           </motion.p>
 
@@ -280,7 +280,7 @@ const About = ({ content }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative z-10 w-full aspect-square rounded-[3rem] overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-2 border-white/5 backdrop-blur-sm"
+            className="relative z-10 w-full aspect-square rounded-3xl md:rounded-[3rem] overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-2 border-white/5 backdrop-blur-sm shadow-2xl"
           >
             {/* Using the generated avatar image */}
             <img 
@@ -316,7 +316,7 @@ const About = ({ content }) => {
           viewport={{ once: true }}
           className="text-center mb-16 space-y-4"
         >
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tighter px-4">
             Tech Ecosystem & Mastering Tools
           </h2>
           <p className="text-slate-400 uppercase tracking-[0.3em] font-semibold text-sm">

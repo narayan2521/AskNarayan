@@ -72,7 +72,7 @@ import {
   FiMaximize2
 } from 'react-icons/fi';
 
-const Education = ({ content, darkMode }) => {
+const Education = ({ content, darkMode, isRightPanelOpen }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -81,7 +81,7 @@ const Education = ({ content, darkMode }) => {
   const certificateImages = [
     "https://images.unsplash.com/photo-1546410531-bb4caa19503d?q=80&w=2070&auto=format&fit=crop", // B.Tech (Diploma/Degree look)
     "https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=2070&auto=format&fit=crop", // SSC/HSC
-    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2070&auto=format&fit=crop"  // HSC
+    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04844?q=80&w=1974&auto=format&fit=crop"  // HSC
   ];
 
   const educationData = content.content.map((edu, idx) => ({
@@ -137,15 +137,15 @@ const Education = ({ content, darkMode }) => {
   };
 
   return (
-    <div className={`w-full min-h-[850px] lg:h-[650px] relative overflow-hidden rounded-3xl border ${darkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-white/50 border-slate-200'} backdrop-blur-sm`}>
+    <div className={`w-full min-h-[600px] lg:h-[650px] relative overflow-hidden rounded-3xl border ${darkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-white/50 border-slate-200'} backdrop-blur-sm`}>
       
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className={`absolute inset-0 ${darkMode ? 'bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_70%)]' : 'bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]'}`} />
       </div>
 
-      {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-20 p-6 flex justify-between items-center">
+      {/* Header (Now relative to avoid overlap) */}
+      <div className="relative z-20 p-6 flex justify-between items-center bg-inherit">
         <div className="flex items-center gap-3">
           <div className={`p-2 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500`}>
             <FiZap className="text-white" size={20} />
@@ -181,177 +181,191 @@ const Education = ({ content, darkMode }) => {
       </div>
 
       {/* Main Content Area */}
-      <div className="h-full flex items-start lg:items-center justify-center p-6 pt-24 lg:pt-20">
-        <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-8 items-center justify-center h-full">
+      <div className="h-full flex flex-col p-6 pt-4">
+        <div className="w-full max-w-5xl mx-auto flex flex-col h-full">
           
-          {/* Left: Text Content */}
-          <div className="w-full lg:w-1/2 space-y-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 30 }}
-                transition={{ duration: 0.4 }}
-                className="space-y-4"
-              >
-                {/* Badge */}
-                <motion.div 
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r ${educationData[activeIndex].color} text-white shadow-lg`}
+          {/* Top: Active Education Detail Area */}
+          <div className="flex-1 flex flex-col lg:flex-row gap-12 items-center justify-center min-h-0">
+            {/* Left: Text Content */}
+            <div className={`w-full ${isRightPanelOpen ? 'lg:w-[55%]' : 'lg:w-3/5'} space-y-6`}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="space-y-4"
                 >
-                  <FiAward size={16} />
-                  {educationData[activeIndex].percentage}% Aggregate
+                  {/* Badge */}
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r ${educationData[activeIndex].color} text-white shadow-lg`}
+                  >
+                    <FiAward size={16} />
+                    {educationData[activeIndex].percentage}% Aggregate
+                  </motion.div>
+
+                  {/* Title */}
+                  <h2 className={`text-xl xs:text-2xl md:text-3xl font-black leading-[1.15] ${darkMode ? 'text-white' : 'text-slate-900'} whitespace-normal break-words max-w-full tracking-tight`}>
+                    {educationData[activeIndex].degree}
+                  </h2>
+
+                  {/* Institution */}
+                  <div className={`flex items-start gap-2 text-base md:text-xl ${darkMode ? 'text-slate-300' : 'text-slate-600'} whitespace-normal break-words`}>
+                    <FiMapPin className="text-blue-500 mt-1 shrink-0" />
+                    <span className="font-semibold leading-snug">{educationData[activeIndex].university}</span>
+                  </div>
+
+                  {/* Year */}
+                  <div className={`flex items-center gap-2 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <FiCalendar className="text-purple-500" />
+                    <span className="font-medium text-lg">Class of {educationData[activeIndex].year}</span>
+                  </div>
+
+                  {/* Stats Row */}
+                  <div className="grid grid-cols-2 xs:grid-cols-3 gap-3 md:gap-4 pt-2 md:pt-4">
+                    {educationData[activeIndex].highlights.map((stat, i) => (
+                      <motion.div
+                        key={stat.label}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.1 }}
+                        className={`px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl border ${darkMode ? 'bg-slate-800/40 border-slate-700/50' : 'bg-white border-slate-200'} shadow-sm text-center xs:text-left`}
+                      >
+                        <div className={`text-lg md:text-2xl font-black bg-gradient-to-r ${educationData[activeIndex].color} bg-clip-text text-transparent`}>
+                          {stat.value}
+                        </div>
+                        <div className={`text-[9px] md:text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+                          {stat.label}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Desktop View Certificate Button (Hidden on Mobile) */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={(e) => openCertificate(e, educationData[activeIndex])}
+                    className={`hidden lg:flex items-center gap-2 px-8 py-4 rounded-2xl font-bold transition-all mt-6 shadow-xl ${
+                      darkMode 
+                        ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-blue-900/20' 
+                        : 'bg-slate-900 text-white hover:bg-slate-800'
+                    }`}
+                  >
+                    <FiMaximize2 size={20} />
+                    View Certificate
+                  </motion.button>
                 </motion.div>
+              </AnimatePresence>
+            </div>
 
-                {/* Title */}
-                <h2 className={`text-3xl lg:text-4xl font-black leading-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                  {educationData[activeIndex].degree}
-                </h2>
-
-                {/* Institution */}
-                <div className={`flex items-center gap-2 text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                  <FiMapPin className="text-blue-500" />
-                  <span className="font-semibold">{educationData[activeIndex].university}</span>
-                </div>
-
-                {/* Year */}
-                <div className={`flex items-center gap-2 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                  <FiCalendar className="text-purple-500" />
-                  <span className="font-medium">Class of {educationData[activeIndex].year}</span>
-                </div>
-
-                {/* Stats */}
-                <div className="flex gap-4 pt-2">
-                  {educationData[activeIndex].highlights.map((stat, i) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className={`px-4 py-2 rounded-xl border ${darkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-white border-slate-200'}`}
-                    >
-                      <div className={`text-xl font-black bg-gradient-to-r ${educationData[activeIndex].color} bg-clip-text text-transparent`}>
-                        {stat.value}
-                      </div>
-                      <div className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* View Certificate Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={(e) => openCertificate(e, educationData[activeIndex])}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all mt-4 ${
-                    darkMode 
-                      ? 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700' 
-                      : 'bg-slate-900 text-white hover:bg-slate-800'
-                  }`}
+            {/* Right: Active Card Visual Preview (Hidden on small screens since it's redundant with bottom selector) */}
+            <div className="hidden lg:block w-full lg:w-2/5 relative h-[350px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, rotateY: 20 }}
+                  transition={{ type: "spring", damping: 20 }}
+                  className="w-full h-full relative"
                 >
-                  <FiMaximize2 size={18} />
-                  View Certificate
-                </motion.button>
-              </motion.div>
-            </AnimatePresence>
+                  <div className={`absolute inset-0 rounded-3xl overflow-hidden shadow-2xl border-4 ${darkMode ? 'border-slate-800' : 'border-white'}`}>
+                    <img 
+                      src={educationData[activeIndex].certificateUrl} 
+                      className="w-full h-full object-cover opacity-80"
+                      alt="Certificate Preview"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+                       <div className="text-white">
+                          <p className="text-xs font-bold uppercase tracking-widest opacity-60">Verified Document</p>
+                          <h4 className="text-xl font-black">{educationData[activeIndex].degree}</h4>
+                       </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
-          {/* Right: 3D Card Stack */}
-          <div className="w-full lg:w-1/2 relative h-[350px] lg:h-[400px] flex items-center justify-center perspective-1000 mt-12 lg:mt-0">
-            {educationData.map((edu, idx) => {
-              const offset = idx - activeIndex;
-              const absOffset = Math.abs(offset);
-              const isActive = idx === activeIndex;
-              
-              return (
-                <motion.div
-                  key={edu.id}
-                  onClick={() => handleCardClick(idx)}
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                  animate={{
-                    x: typeof window !== 'undefined' && window.innerWidth < 1024 ? offset * 25 : offset * 45,
-                    y: absOffset * 15,
-                    scale: isActive ? 1 : 0.85 - absOffset * 0.05,
-                    rotateY: offset * -10,
-                    rotateX: isActive ? 0 : 8,
-                    zIndex: educationData.length - absOffset,
-                    opacity: absOffset > 1 ? 0 : 1 - absOffset * 0.4,
-                  }}
-                  transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                  whileHover={isActive ? { scale: 1.05, rotateY: 5 } : {}}
-                  className={`absolute w-64 h-80 cursor-pointer rounded-2xl overflow-hidden shadow-2xl ${darkMode ? 'shadow-black/50' : 'shadow-slate-400/50'}`}
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  {/* Card Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${edu.color}`} />
-                  <div className={`absolute inset-0 ${darkMode ? 'bg-slate-900/90' : 'bg-white/95'}`} />
-
-                  {/* Certificate Preview Thumbnail */}
-                  <div 
-                    onClick={(e) => openCertificate(e, edu)}
-                    className="absolute top-4 left-4 right-4 h-32 rounded-xl overflow-hidden border-2 border-dashed border-slate-400/30 hover:border-blue-500/50 transition-colors cursor-zoom-in group"
+          {/* Bottom: Selection Cards - Grid of icons on mobile, Cards on desktop */}
+          <div className="mt-auto pt-4 md:pt-8 border-t border-slate-700/20">
+            {/* Mobile/Tablet Grid View */}
+            <div className="flex lg:hidden justify-center gap-4 mb-6">
+              {educationData.map((edu, idx) => {
+                const isActive = idx === activeIndex;
+                return (
+                  <motion.button
+                    key={edu.id}
+                    onClick={() => handleCardClick(idx)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`
+                      relative w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300
+                      ${isActive 
+                        ? `bg-gradient-to-br ${edu.color} text-white shadow-lg shadow-blue-500/20 ring-2 ring-blue-500/50` 
+                        : `${darkMode ? 'bg-slate-800/50 text-slate-400 border-slate-700' : 'bg-white text-slate-500 border-slate-200'} border shadow-sm`
+                      }
+                    `}
                   >
-                    <img 
-                      src={edu.certificateUrl} 
-                      alt={`${edu.degree} certificate`}
-                      className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
-                      <FiMaximize2 className="text-white drop-shadow-lg" size={24} />
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${edu.color} flex items-center justify-center mb-3 shadow-lg`}>
-                      <edu.icon className="text-white" size={24} />
-                    </div>
-                    
-                    <h4 className={`text-lg font-bold mb-1 line-clamp-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                      {edu.degree}
-                    </h4>
-                    
-                    <p className={`text-sm line-clamp-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                      {edu.university}
-                    </p>
-
-                    {/* Progress Bar */}
-                    <div className={`mt-3 h-1.5 rounded-full overflow-hidden ${darkMode ? 'bg-slate-800' : 'bg-slate-200'}`}>
+                    <edu.icon size={24} />
+                    {isActive && (
                       <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: isActive ? `${edu.percentage}%` : "0%" }}
-                        transition={{ duration: 1, delay: 0.3 }}
-                        className={`h-full rounded-full bg-gradient-to-r ${edu.color}`}
+                        layoutId="active-dot-edu"
+                        className="absolute -bottom-2 w-1.5 h-1.5 rounded-full bg-blue-500"
                       />
-                    </div>
-                    
-                    <div className="flex justify-between items-center mt-2">
-                      <span className={`text-xs font-bold ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                        {edu.year}
-                      </span>
-                      <span className={`text-xs font-bold bg-gradient-to-r ${edu.color} bg-clip-text text-transparent`}>
-                        {edu.percentage}%
-                      </span>
-                    </div>
-                  </div>
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
 
-                  {/* Shine Effect */}
+            {/* Desktop Horizontal Scroll View */}
+            <div className="hidden lg:flex gap-4 overflow-x-auto pb-6 custom-scrollbar no-scrollbar">
+              {educationData.map((edu, idx) => {
+                const isActive = idx === activeIndex;
+                return (
                   <motion.div
-                    className="absolute inset-0 opacity-0 pointer-events-none"
-                    style={{
-                      background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%)",
-                    }}
-                    animate={{ x: isActive ? ["100%", "-100%"] : "100%" }}
-                    transition={{ duration: 1.5, repeat: isActive ? Infinity : 0, repeatDelay: 3 }}
-                  />
-                </motion.div>
-              );
-            })}
+                    key={edu.id}
+                    onClick={() => setActiveIndex(idx)}
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative flex-shrink-0 w-64 p-5 cursor-pointer rounded-2xl transition-all duration-300 border-2 ${
+                      isActive 
+                        ? `bg-slate-800/80 border-blue-500 shadow-lg shadow-blue-500/10` 
+                        : `${darkMode ? 'bg-slate-900/30 border-slate-800' : 'bg-white border-slate-100'} hover:border-slate-600`
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${edu.color} flex items-center justify-center shrink-0`}>
+                        <edu.icon className="text-white" size={20} />
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className={`text-sm font-bold truncate ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                          {edu.degree}
+                        </h4>
+                        <p className={`text-[10px] font-bold opacity-60 uppercase tracking-widest ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                          {edu.year}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            
+            {/* Mobile View Certificate (Shown only on small screens) */}
+            <div className="lg:hidden mt-4">
+               <button
+                  onClick={(e) => openCertificate(e, educationData[activeIndex])}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-blue-600 text-white font-bold"
+               >
+                  <FiMaximize2 size={18} /> View Certificate
+               </button>
+            </div>
           </div>
         </div>
       </div>
@@ -363,87 +377,84 @@ const Education = ({ content, darkMode }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
             onClick={closeModal}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ type: "spring", damping: 25 }}
-              className={`relative max-w-4xl w-full max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl ${darkMode ? 'bg-slate-900' : 'bg-white'}`}
+              className={`relative max-w-5xl w-full max-h-[90vh] flex flex-col rounded-3xl overflow-hidden shadow-2xl ${darkMode ? 'bg-slate-900' : 'bg-white'}`}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Header */}
-              <div className={`flex justify-between items-center p-4 border-b ${darkMode ? 'border-slate-800' : 'border-slate-200'}`}>
+              {/* FIXED Modal Header */}
+              <div className={`p-6 flex justify-between items-center z-10 border-b ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
                 <div>
-                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                  <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-gradient-to-r ${selectedCertificate.color} text-white mb-2`}>
+                    <FiAward size={12} /> Official Certification
+                  </div>
+                  <h3 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                     {selectedCertificate.degree}
                   </h3>
-                  <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    {selectedCertificate.university} • Class of {selectedCertificate.year}
+                  <p className={`text-sm font-semibold opacity-60 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    {selectedCertificate.university} • {selectedCertificate.year}
                   </p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex items-center gap-3">
                   <motion.a
                     href={selectedCertificate.certificateUrl}
                     download
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`p-2 rounded-lg transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-100 text-slate-600'}`}
-                    title="Download"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`p-3 rounded-2xl transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
                   >
-                    <FiDownload size={20} />
+                    <FiDownload size={22} />
                   </motion.a>
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={closeModal}
-                    className={`p-2 rounded-lg transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-100 text-slate-600'}`}
+                    className={`p-3 rounded-2xl transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
                   >
-                    <FiX size={24} />
+                    <FiX size={26} />
                   </motion.button>
                 </div>
               </div>
 
-              {/* Certificate Image */}
-              <div className={`p-6 overflow-auto max-h-[70vh] ${darkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
-                <motion.img
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  src={selectedCertificate.certificateUrl}
-                  alt={`${selectedCertificate.degree} Certificate`}
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-                
-                {/* Certificate Details Overlay */}
-                <div className={`mt-4 p-4 rounded-xl border ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                      <div className={`text-2xl font-black bg-gradient-to-r ${selectedCertificate.color} bg-clip-text text-transparent`}>
-                        {selectedCertificate.percentage}%
-                      </div>
-                      <div className={`text-xs font-bold uppercase tracking-wider mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                        Aggregate Score
-                      </div>
+              {/* SCROLLABLE Content Area */}
+              <div className={`flex-1 overflow-y-auto custom-scrollbar ${darkMode ? 'bg-slate-950/50' : 'bg-slate-50'}`}>
+                <div className="p-8 lg:p-12">
+                  <motion.div
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="relative group"
+                  >
+                    <img
+                      src={selectedCertificate.certificateUrl}
+                      alt={`${selectedCertificate.degree} Certificate`}
+                      className="w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/5"
+                    />
+                    
+                    {/* Badge/Watermark style overlay */}
+                    <div className="absolute top-8 right-8 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
+                       <FiAward size={120} className={darkMode ? 'text-white' : 'text-slate-900'} />
                     </div>
-                    <div>
-                      <div className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                        {selectedCertificate.year}
+                  </motion.div>
+                  
+                  {/* Footer details inside scroll area */}
+                  <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[{ label: "Aggregate Score", value: selectedCertificate.percentage + "%" },
+                      { label: "Completion Year", value: selectedCertificate.year },
+                      { label: "Verification", value: "Success" }].map((item, i) => (
+                      <div key={i} className={`p-6 rounded-2xl border ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'}`}>
+                        <div className={`text-sm font-bold uppercase tracking-widest mb-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>{item.label}</div>
+                        <div className={`text-2xl font-black ${item.label === 'Verification' ? 'text-emerald-500' : (darkMode ? 'text-white' : 'text-slate-900')}`}>
+                          {item.value}
+                        </div>
                       </div>
-                      <div className={`text-xs font-bold uppercase tracking-wider mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                        Year of Completion
-                      </div>
-                    </div>
-                    <div>
-                      <div className={`text-2xl font-black text-emerald-500`}>
-                        Verified
-                      </div>
-                      <div className={`text-xs font-bold uppercase tracking-wider mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                        Status
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>

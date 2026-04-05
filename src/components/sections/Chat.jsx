@@ -166,13 +166,13 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
       </div>
 
       {/* Suggested Questions */}
-      <div className={`px-4 py-2 flex flex-wrap gap-2 transition-opacity duration-300 ${isBusy ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
-        {content.content.suggestions.map((s, i) => (
+      <div className={`px-4 py-1 flex overflow-x-auto no-scrollbar gap-2 transition-opacity duration-300 ${isBusy ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+        {(content.content.suggestions || []).map((s, i) => (
           <button
             key={i}
             onClick={() => handleSuggestionClick(s)}
             disabled={isBusy}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 border ${
+            className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all duration-300 border ${
               darkMode 
                 ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-400' 
                 : 'bg-white border-slate-200 text-slate-500 hover:border-blue-500 hover:text-blue-600 shadow-sm'
@@ -184,7 +184,7 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
       </div>
 
       {/* Chat Input Area */}
-      <div className="p-4 md:p-6">
+      <div className="p-2 md:p-6 mb-1 md:mb-2 text-center">
         <div className={`relative group transition-opacity duration-300 ${isBusy ? 'opacity-50' : 'opacity-100'}`}>
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-10 group-focus-within:opacity-30 transition duration-500"></div>
           <div className={`relative flex items-center ai-input overflow-hidden ${darkMode ? 'bg-slate-900/50' : 'bg-white'}`}>
@@ -193,20 +193,20 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend(inputValue)}
-              placeholder={isBusy ? "AI is thinking..." : "Ask me something..."}
+              placeholder={isBusy ? " Thinking..." : "Ask..."}
               disabled={isBusy}
-              className="flex-1 bg-transparent border-none outline-none py-4 px-6 text-sm md:text-base font-medium disabled:cursor-not-allowed"
+              className="flex-1 bg-transparent border-none outline-none py-2 md:py-4 px-3 md:px-6 text-[13px] md:text-base font-medium disabled:cursor-not-allowed"
             />
             <button
               onClick={() => handleSend(inputValue)}
               disabled={!inputValue.trim() || isBusy}
-              className={`p-3 mr-3 rounded-xl transition-all duration-300 ${
+              className={`p-2 md:p-3 mr-1.5 md:mr-3 rounded-xl transition-all duration-300 ${
                 inputValue.trim() && !isBusy
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:scale-105 active:scale-95' 
                   : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'
               }`}
             >
-              <FiSend size={18} />
+              <FiSend size={14} className="md:w-[18px] md:h-[18px]" />
             </button>
           </div>
         </div>

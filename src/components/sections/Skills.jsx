@@ -25,10 +25,10 @@ const OrbitSkill = ({ skill, index, total, radius, onClick }) => {
       whileHover={{ scale: 1.2, zIndex: 50 }}
       onClick={() => onClick(skill)}
     >
-      <div className="relative p-3 rounded-xl bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-2xl group-hover:border-blue-500/50 transition-colors duration-500">
-         <SkillIcon iconName={skill.icon} colorClass={skill.color} className="text-2xl" />
+      <div className="relative w-12 h-12 flex items-center justify-center rounded-full bg-slate-900/60 backdrop-blur-md border border-white/10 shadow-2xl group-hover:border-blue-500/50 transition-all duration-500">
+         <SkillIcon iconName={skill.icon} colorClass={skill.color} className="text-xl" />
          
-         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 border border-white/10 px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest whitespace-nowrap z-50">
+         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 border border-white/10 px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest whitespace-nowrap z-50 pointer-events-none">
             {skill.name}
          </div>
       </div>
@@ -36,7 +36,7 @@ const OrbitSkill = ({ skill, index, total, radius, onClick }) => {
   );
 };
 
-const Skills = ({ content, darkMode, onNavigate }) => {
+const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarCollapsed }) => {
   const allSkills = [...content.content.Frontend, ...content.content.Tools];
   const [activeSkill, setActiveSkill] = useState(allSkills[0]);
   const [orbitSkills, setOrbitSkills] = useState(allSkills.slice(1));
@@ -45,20 +45,31 @@ const Skills = ({ content, darkMode, onNavigate }) => {
 
   useEffect(() => {
     const handleResize = () => {
-        if (window.innerWidth < 768) {
-            setRadius(100);
+        let baseRadius = 280;
+        if (window.innerWidth < 480) {
+            baseRadius = 100;
+        } else if (window.innerWidth < 768) {
+            baseRadius = 140;
         } else if (window.innerWidth < 1024) {
-            setRadius(180);
+            baseRadius = 200;
         } else if (window.innerWidth < 1536) {
-            setRadius(280);
+            baseRadius = 280;
         } else {
-            setRadius(320);
+            baseRadius = 340;
         }
+
+        // Adjust radius based on open panels on larger screens
+        if (window.innerWidth >= 1024) {
+          if (isRightPanelOpen) baseRadius *= 0.7;
+          if (!isSidebarCollapsed) baseRadius *= 0.8;
+        }
+
+        setRadius(baseRadius);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isRightPanelOpen, isSidebarCollapsed]);
 
   const handleSkillClick = (clickedSkill) => {
     setOrbitSkills(prev => {
@@ -73,8 +84,8 @@ const Skills = ({ content, darkMode, onNavigate }) => {
   const outerOrbitSkills = orbitSkills.slice(7);
 
   return (
-    <div className="w-full max-w-screen-2xl mx-auto py-12 lg:py-24 px-8 lg:px-16 h-full flex items-center">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
+    <div className="w-full max-w-7xl mx-auto py-8 lg:py-24 px-4 sm:px-8 lg:px-16 h-full flex items-center overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full">
         
         {/* Left Panel: Content (5/12 cols) */}
         <div className="lg:col-span-5 space-y-8 lg:space-y-10 order-2 lg:order-1 text-center lg:text-left">
@@ -83,8 +94,8 @@ const Skills = ({ content, darkMode, onNavigate }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-blue-500 text-[10px] lg:text-[11px] font-black tracking-[0.4em] uppercase mb-4 block underline decoration-2 underline-offset-8">Tech Ecosystem</span>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 lg:mb-10 leading-[0.85] py-2">
+            <span className="text-blue-500 text-[9px] lg:text-[11px] font-black tracking-[0.4em] uppercase mb-4 block underline decoration-2 underline-offset-8">Tech Ecosystem</span>
+            <h2 className="text-3xl xs:text-5xl md:text-7xl lg:text-7xl font-black tracking-tighter mb-6 lg:mb-10 leading-[0.85] py-2 px-2">
               My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">Skills.</span>
             </h2>
             
@@ -97,19 +108,19 @@ const Skills = ({ content, darkMode, onNavigate }) => {
                    className="p-8 lg:p-10 rounded-[32px] bg-slate-900/40 border border-white/10 backdrop-blur-3xl relative group mb-10 shadow-2xl"
                 >
                     <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-[100px]" />
-                    <div className="flex flex-col gap-8 relative z-10">
-                        <div className="flex items-center gap-8 border-b border-white/5 pb-8">
-                            <div className="p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 shadow-inner group-hover:scale-105 transition-transform duration-500">
-                                <SkillIcon iconName={activeSkill.icon} colorClass={activeSkill.color} className="text-5xl lg:text-7xl" />
+                    <div className="flex flex-col gap-6 md:gap-8 relative z-10">
+                        <div className="flex items-center gap-6 md:gap-8 border-b border-white/5 pb-6 md:pb-8">
+                            <div className="p-3 md:p-5 rounded-2xl bg-white/5 border border-white/10 shadow-inner group-hover:scale-105 transition-transform duration-500">
+                                <SkillIcon iconName={activeSkill.icon} colorClass={activeSkill.color} className="text-4xl md:text-7xl" />
                             </div>
                             <div className="text-left">
-                                <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-white mb-2 leading-none">{activeSkill.name}</h3>
-                                <div className="flex items-center gap-3 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] opacity-80">
-                                    <FiCpu className="animate-pulse" /> Core Technology
+                                <h3 className="text-xl xs:text-2xl md:text-4xl font-black uppercase tracking-tighter text-white mb-2 leading-none">{activeSkill.name}</h3>
+                                <div className="flex items-center gap-2 md:gap-3 text-blue-400 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] opacity-80">
+                                    <FiCpu className="animate-pulse" /> Core Tech
                                 </div>
                             </div>
                         </div>
-                        <p className="text-sm lg:text-lg text-slate-400 font-medium leading-[1.6] text-left">
+                        <p className="text-[11px] xs:text-xs md:text-lg text-slate-400 font-medium leading-[1.6] text-left">
                             {activeSkill.description || "Technical strategy and implementation expert specializing in this domain."}
                         </p>
                     </div>
@@ -128,7 +139,7 @@ const Skills = ({ content, darkMode, onNavigate }) => {
         </div>
 
         {/* Right Panel: Dual Orbital Visual (7/12 cols) */}
-        <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center items-center h-[500px] md:h-[700px] lg:h-[900px] pointer-events-auto">
+        <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center items-center h-[300px] sm:h-[500px] md:h-[700px] lg:h-[900px] pointer-events-auto overflow-hidden">
             {/* Background Decorative Rings */}
             <div className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-20">
                 <div className="w-[300px] lg:w-[400px] h-[300px] lg:h-[400px] rounded-full border border-dashed border-white/20 animate-[spin_80s_linear_infinite]" />
@@ -181,9 +192,9 @@ const Skills = ({ content, darkMode, onNavigate }) => {
             {/* Central Hero Icon */}
             <motion.div 
                layoutId="hero-icon"
-               className="absolute z-30 p-5 lg:p-8 rounded-[32px] lg:rounded-[48px] bg-slate-950 border-2 border-white/20 shadow-[0_0_120px_rgba(37,99,235,0.2)] backdrop-blur-3xl group pointer-events-auto"
+               className="absolute z-30 p-4 md:p-8 rounded-2xl md:rounded-[48px] bg-slate-950 border-2 border-white/20 shadow-[0_0_120px_rgba(37,99,235,0.2)] backdrop-blur-3xl group pointer-events-auto scale-75 md:scale-100"
             >
-                <SkillIcon iconName={activeSkill.icon} colorClass={activeSkill.color} className="text-6xl lg:text-8xl transition-all duration-500 group-hover:scale-105" />
+                <SkillIcon iconName={activeSkill.icon} colorClass={activeSkill.color} className="text-4xl md:text-8xl transition-all duration-500 group-hover:scale-105" />
             </motion.div>
         </div>
 

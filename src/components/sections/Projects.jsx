@@ -91,15 +91,16 @@ import {
   FiZap
 } from 'react-icons/fi';
 
-const Projects = ({ content, darkMode }) => {
+const Projects = ({ content, projectsData: externalProjects, darkMode }) => {
   const [hoveredId, setHoveredId] = useState(null);
   const [activeProject, setActiveProject] = useState(null);
 
-  const projectsData = content.content.map((project, idx) => ({
+  // Use projectsData from props if available, otherwise calculate it (fallback)
+  const projectsData = externalProjects || content.content.map((project, idx) => ({
     ...project,
     id: idx,
     year: 2024 - idx,
-    category: idx === 0 ? 'Dashboard' : idx === 1 ? 'API' : 'Web App',
+    category: idx === 0 ? 'Tool' : idx === 1 ? 'Automation' : 'Dashboard',
     color: idx === 0 ? 'blue' : idx === 1 ? 'purple' : 'emerald',
     stats: {
       uptime: '99.9%',
@@ -116,7 +117,7 @@ const Projects = ({ content, darkMode }) => {
     } else {
       setActiveProject(projectsData[0]);
     }
-  }, [hoveredId]);
+  }, [hoveredId, projectsData]);
 
   // Initialize with first project
   useEffect(() => {
@@ -182,7 +183,7 @@ const Projects = ({ content, darkMode }) => {
                     } ${project.color === 'blue' ? 'bg-blue-500' : project.color === 'purple' ? 'bg-purple-500' : 'bg-emerald-500'}`}
                   />
 
-                  <div className="relative px-6 py-6 flex items-center justify-between gap-6">
+                  <div className="relative px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between gap-4 sm:gap-6">
                     {/* Left: Number & Info */}
                     <div className="flex items-center gap-5 flex-1">
                       <span className={`text-sm font-mono w-6 transition-colors ${
@@ -194,14 +195,14 @@ const Projects = ({ content, darkMode }) => {
                       </span>
                       
                       <div>
-                        <h3 className={`text-lg font-medium mb-0.5 transition-colors ${
+                        <h3 className={`text-base sm:text-lg font-medium mb-0.5 transition-colors ${
                           isActive 
                             ? darkMode ? 'text-slate-100' : 'text-slate-900'
                             : darkMode ? 'text-slate-400' : 'text-slate-600'
                         }`}>
                           {project.title}
                         </h3>
-                        <p className={`text-xs line-clamp-1 transition-colors ${
+                        <p className={`text-[10px] sm:text-xs line-clamp-1 transition-colors ${
                           isActive 
                             ? darkMode ? 'text-slate-400' : 'text-slate-500'
                             : darkMode ? 'text-slate-600' : 'text-slate-400'

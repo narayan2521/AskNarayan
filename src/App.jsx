@@ -15,12 +15,15 @@ import Chat from './components/sections/Chat';
 
 // New Component
 import RecentProjectsPanel from './components/layout/RecentProjectsPanel';
+import MobileNav from './components/layout/MobileNav';
+import LandingPage from './components/layout/LandingPage';
 
 // Data
 import portfolioData from './data/Profile.json';
 
 function App() {
   const [darkMode, setDarkMode] = useState(portfolioData.ui.darkMode);
+  const [showLanding, setShowLanding] = useState(true);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true);
   const [chatMessages, setChatMessages] = useState([
@@ -34,14 +37,39 @@ function App() {
 
   const [[pageIndex, direction], setPage] = useState([0, 0]);
   const activeSection = sections[pageIndex]?.id || 'home';
+  
+  // Transform projects once to be shared by multiple components
+  const enhancedProjects = portfolioData.sections.projects.content.map((project, idx) => ({
+    ...project,
+    id: idx,
+    year: 2024 - idx,
+    category: idx === 0 ? 'Tool' : idx === 1 ? 'Automation' : 'Dashboard',
+    color: idx === 0 ? 'blue' : idx === 1 ? 'purple' : 'emerald',
+    stats: {
+      uptime: '99.9%',
+      users: `${(idx + 1) * 2.5}k`,
+      latency: `${20 + idx * 5}ms`
+    }
+  }));
 
-  // Handle Dark Mode Class
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+    
+    // Auto-collapse panels on smaller screens
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setIsRightPanelOpen(false);
+      } else {
+        setIsRightPanelOpen(true);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [darkMode]);
 
   const handleNavClick = (sectionId) => {
@@ -53,20 +81,26 @@ function App() {
 
   const renderSection = () => {
     const sectionData = portfolioData.sections[activeSection] || Object.values(portfolioData.sections)[0];
+    const sectionProps = {
+      content: sectionData,
+      darkMode,
+      isRightPanelOpen,
+      isSidebarCollapsed,
+      handleNavClick
+    };
+
     switch (activeSection) {
-      case 'about': return <About content={sectionData} darkMode={darkMode} />;
-      case 'experience': return <Experience content={sectionData} darkMode={darkMode} />;
-      case 'skills': return <Skills content={sectionData} darkMode={darkMode} onNavigate={handleNavClick} />;
-      case 'projects': return <Projects content={sectionData} darkMode={darkMode} />;
-      case 'education': return <Education content={sectionData} darkMode={darkMode} />;
-      case 'certifications': return <Certifications content={sectionData} darkMode={darkMode} />;
-      case 'contact': return <Contact content={sectionData} darkMode={darkMode} />;
+      case 'about': return <About {...sectionProps} />;
+      case 'experience': return <Experience {...sectionProps} />;
+      case 'skills': return <Skills {...sectionProps} onNavigate={handleNavClick} />;
+      case 'projects': return <Projects {...sectionProps} projectsData={enhancedProjects} />;
+      case 'education': return <Education {...sectionProps} />;
+      case 'certifications': return <Certifications {...sectionProps} />;
+      case 'contact': return <Contact {...sectionProps} />;
       case 'chat': return <Chat 
-        content={sectionData} 
-        darkMode={darkMode} 
+        {...sectionProps}
         messages={chatMessages} 
         setMessages={setChatMessages} 
-        handleNavClick={handleNavClick}
       />;
       default: return null;
     }
@@ -79,7 +113,21 @@ function App() {
   };
 
   return (
-    <div className={`h-screen overflow-hidden transition-colors duration-500 flex ${darkMode ? 'bg-[#0a0a0c] text-slate-100' : 'bg-[#f4f7f9] text-slate-900'}`}>
+    <AnimatePresence mode="wait">
+      {showLanding ? (
+        <LandingPage 
+          key="landing" 
+          darkMode={darkMode} 
+          onEnter={() => setShowLanding(false)} 
+        />
+      ) : (
+        <motion.div 
+          key="main-app"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className={`h-screen overflow-hidden transition-colors duration-500 flex ${darkMode ? 'bg-[#0a0a0c] text-slate-100' : 'bg-[#f4f7f9] text-slate-900'}`}
+        >
       
       {/* Sidebar Component */}
       <Sidebar 
@@ -95,9 +143,9 @@ function App() {
 
       {/* Main Content Area */}
       <main 
-        className={`flex-1 h-full relative transition-all duration-500 ease-in-out flex flex-col pt-4 md:pt-6 px-4 md:px-6 pb-4 md:pb-6 ${
-          isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'
-        } ${isRightPanelOpen ? 'lg:mr-[300px]' : 'mr-0'} ml-0 mr-0 transition-[margin]`}
+        className={`flex-1 h-full relative transition-all duration-500 ease-in-out flex flex-col pt-4 md:pt-6 px-3 md:px-6 pb-24 lg:pb-6 ${
+          isSidebarCollapsed ? 'lg:pl-20' : 'lg:pl-64'
+        } ${isRightPanelOpen ? 'lg:pr-[300px]' : 'lg:pr-0'}`}
       >
         {/* Background Glows */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -106,7 +154,7 @@ function App() {
         </div>
 
         {/* Outer AI Container */}
-        <div className={`flex-1 relative z-10 ai-container flex flex-col ${
+        <div className={`flex-1 relative z-10 ai-container flex flex-col max-w-full ${
           darkMode ? 'glass-dark' : 'glass-light shadow-ai'
         }`}>
           
@@ -129,7 +177,7 @@ function App() {
           </header>
 
           {/* Content Scroll Area */}
-          <div className={`flex-1 overflow-x-hidden min-h-0 custom-scrollbar ${activeSection === 'chat' ? 'overflow-hidden flex flex-col' : 'overflow-y-auto p-6 md:p-10'}`}>
+          <div className={`flex-1 overflow-x-hidden min-h-0 custom-scrollbar ${activeSection === 'chat' ? 'overflow-hidden flex flex-col' : 'overflow-y-auto p-4 md:p-10'}`}>
             <AnimatePresence initial={false} mode="wait" custom={direction}>
               <motion.div
                 key={pageIndex}
@@ -139,7 +187,7 @@ function App() {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full h-full flex flex-col"
+                className="w-full min-h-full flex flex-col"
               >
                 {renderSection()}
               </motion.div>
@@ -155,14 +203,26 @@ function App() {
         </div>
       </main>
 
-      {/* Right Panel Component */}
-      <RecentProjectsPanel 
-        isOpen={isRightPanelOpen} 
-        projects={portfolioData.sections.projects.content} 
-        darkMode={darkMode}
-        handleNavClick={handleNavClick}
+      {/* Mobile Navigation */}
+      <MobileNav 
+        activeSection={activeSection} 
+        handleNavClick={handleNavClick} 
+        sections={sections} 
+        darkMode={darkMode} 
       />
-    </div>
+
+      {/* Right Panel Component */}
+      <div className="hidden lg:block">
+        <RecentProjectsPanel 
+          isOpen={isRightPanelOpen} 
+          projects={enhancedProjects} 
+          darkMode={darkMode}
+          handleNavClick={handleNavClick}
+        />
+      </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
   );
 }
 
