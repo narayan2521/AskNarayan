@@ -57,7 +57,7 @@ const LandingPage = ({ onEnter, darkMode }) => {
     if (currentLineIndex < welcomeLines.length) {
       const line = welcomeLines[currentLineIndex].text;
       let charIndex = 0;
-      
+
       const interval = setInterval(() => {
         setTypedLines(prev => {
           const newTyped = [...prev];
@@ -65,7 +65,7 @@ const LandingPage = ({ onEnter, darkMode }) => {
           newTyped[currentLineIndex] = line.slice(0, charIndex + 1);
           return newTyped;
         });
-        
+
         charIndex++;
         if (charIndex === line.length) {
           clearInterval(interval);
@@ -94,10 +94,10 @@ const LandingPage = ({ onEnter, darkMode }) => {
 
   return (
     <div className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden ${darkMode ? 'bg-[#050505]' : 'bg-[#f0f4f8]'}`}>
-      
+
       {/* Technical Grid Background */}
       <div className="absolute inset-0 grid-background opacity-20 pointer-events-none" />
-      
+
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px]" />
@@ -108,7 +108,7 @@ const LandingPage = ({ onEnter, darkMode }) => {
       <ParticleBackground />
 
       <AnimatePresence mode="wait">
-        
+
         {/* PHASE 1: INITIAL INTRO */}
         {phase === 'intro' && (
           <motion.div
@@ -147,10 +147,22 @@ const LandingPage = ({ onEnter, darkMode }) => {
               transition={{ delay: 0.2 }}
               className="flex items-center justify-center gap-3 mb-10"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-500/20">
+              {/* <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-500/20">
                 <FiZap className="text-white text-xl" />
-              </div>
-              <span className="text-xl font-black tracking-tighter uppercase italic opacity-80">AskNarayan</span>
+              </div> */}
+              <span className="text-xl font-black tracking-tighter uppercase italic opacity-80">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex items-center space-x-3 overflow-hidden whitespace-nowrap"
+                >
+                  <img
+                    src="/ask-narayan-logo.png"
+                    alt="Narayan Prasad"
+                    className="w-full h-auto max-h-30 object-contain px-2"
+                  />
+                </motion.div>
+              </span>
             </motion.div>
 
             {/* High-Impact Message */}
@@ -221,7 +233,7 @@ const LandingPage = ({ onEnter, darkMode }) => {
           >
             <div className="rounded-[2.5rem] p-1 bg-gradient-to-b from-slate-700/50 to-slate-900/50 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
               <div className="bg-slate-950/90 backdrop-blur-2xl rounded-[2.2rem] border border-white/10 overflow-hidden min-h-[400px] flex flex-col">
-                
+
                 {/* Window Header */}
                 <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between">
                   <div className="flex gap-2.5">
@@ -243,7 +255,7 @@ const LandingPage = ({ onEnter, darkMode }) => {
                       {line}
                     </div>
                   ))}
-                  
+
                   {/* Cursor */}
                   {currentLineIndex < welcomeLines.length && (
                     <motion.span
@@ -252,7 +264,7 @@ const LandingPage = ({ onEnter, darkMode }) => {
                       className="inline-block w-2 h-6 bg-cyan-400 align-middle ml-1"
                     />
                   )}
-                  
+
                   {/* Readiness hint */}
                   {currentLineIndex === welcomeLines.length && (
                     <motion.div
