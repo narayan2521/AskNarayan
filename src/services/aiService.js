@@ -69,6 +69,6 @@ export const getAIResponse = async (userMessage, history) => {
     return responseText;
   } catch (error) {
     console.error("AI Service Error:", error);
-    return "Sorry, I encountered an error while trying to generate a response. Please check your API key or try again later.";
+    throw error;
   }
 };

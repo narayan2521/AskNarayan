@@ -84,11 +84,11 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
   const outerOrbitSkills = orbitSkills.slice(7);
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-8 lg:py-24 px-4 sm:px-8 lg:px-16 h-full flex items-center overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full">
+    <div className="w-full max-w-7xl mx-auto py-8 lg:py-12 px-4 sm:px-8 lg:px-16 h-full flex items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full overflow-hidden relative">
         
         {/* Left Panel: Content (5/12 cols) */}
-        <div className="lg:col-span-5 space-y-6 lg:space-y-10 order-2 lg:order-1 text-center lg:text-left mt-4 lg:mt-0">
+        <div className="lg:col-span-5 space-y-6 lg:space-y-10 order-2 lg:order-1 text-center lg:text-left z-10 relative">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -105,7 +105,7 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
                    initial={{ opacity: 0, y: 20 }}
                    animate={{ opacity: 1, y: 0 }}
                    exit={{ opacity: 0, y: -20 }}
-                   className="p-8 lg:p-10 rounded-[32px] bg-slate-900/40 border border-white/10 backdrop-blur-3xl relative group mb-10 shadow-2xl"
+                   className="relative group mb-10"
                 >
                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-[100px]" />
                     <div className="flex flex-col gap-5 md:gap-8 relative z-10">
@@ -139,7 +139,7 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
         </div>
 
         {/* Right Panel: Dual Orbital Visual (7/12 cols) */}
-        <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center items-center h-[300px] sm:h-[450px] md:h-[600px] lg:h-[900px] pointer-events-auto overflow-hidden">
+        <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center items-center h-[300px] sm:h-[450px] md:h-[500px] lg:h-[600px] pointer-events-auto z-10">
             {/* Background Decorative Rings */}
             <div className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-20">
                 <div className="w-[300px] lg:w-[400px] h-[300px] lg:h-[400px] rounded-full border border-dashed border-white/20 animate-[spin_80s_linear_infinite]" />
