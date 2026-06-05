@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSend, FiUser, FiCpu, FiArrowRight } from 'react-icons/fi';
+import ReactMarkdown from 'react-markdown';
+import { getAIResponse } from '../../services/aiService';
 
 const TypingMessage = ({ text, onComplete }) => {
   const [displayedText, setDisplayedText] = useState('');
@@ -17,13 +19,13 @@ const TypingMessage = ({ text, onComplete }) => {
         setIsTyping(false);
         if (onComplete) onComplete();
       }
-    }, 20);
+    }, 5);
     return () => clearInterval(interval);
   }, [text]);
 
   return (
-    <div className="flex flex-col">
-      <div dangerouslySetInnerHTML={{ __html: displayedText }} />
+    <div className="flex flex-col ai-markdown">
+      <ReactMarkdown>{displayedText}</ReactMarkdown>
       {isTyping && (
         <motion.span
           animate={{ opacity: [1, 0] }}
@@ -60,30 +62,34 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
     setInputValue('');
     setIsTyping(true);
 
-    // AI Logic
-    setTimeout(() => {
-      const lowerText = text.toLowerCase();
-      let response = content.content.fallback;
+    // Fetch AI response
+    const fetchAIResponse = async () => {
+      // Exclude messages that have redirect tags or system messages from history to keep it clean
+      const historyForAI = messages.filter(m => !m.isNew);
+      
+      const responseText = await getAIResponse(text, historyForAI);
+      
+      let finalResponse = responseText;
       let redirect = null;
 
-      // Simple keyword matching
-      for (const item of content.content.qa) {
-        if (item.keywords.some(kw => lowerText.includes(kw))) {
-          response = item.answer;
-          redirect = item.redirect; // Capture the redirect target
-          break;
-        }
+      // Extract redirect token if AI outputted one
+      const redirectMatch = finalResponse.match(/\[REDIRECT:([a-z]+)\]/i);
+      if (redirectMatch) {
+        redirect = redirectMatch[1].toLowerCase();
+        finalResponse = finalResponse.replace(redirectMatch[0], '').trim();
       }
 
       setMessages(prev => [...prev, { 
         id: Date.now() + 1, 
         type: 'ai', 
-        text: response, 
+        text: finalResponse, 
         isNew: true,
-        redirect: redirect // Add redirect to message data
+        redirect: redirect 
       }]);
       setIsTyping(false);
-    }, 1000);
+    };
+
+    fetchAIResponse();
   };
 
   const handleSuggestionClick = (suggestion) => {
@@ -125,8 +131,8 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
                         setMessages(prev => prev.map(m => m.id === msg.id ? { ...m, isNew: false } : m));
                     }} />
                   ) : (
-                    <div className="space-y-3">
-                        <div dangerouslySetInnerHTML={{ __html: msg.text }} />
+                    <div className="space-y-3 ai-markdown">
+                        <ReactMarkdown>{msg.text}</ReactMarkdown>
                         {msg.redirect && !msg.isNew && (
                             <motion.button
                                 initial={{ opacity: 0, scale: 0.9 }}

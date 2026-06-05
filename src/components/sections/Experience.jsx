@@ -18,51 +18,49 @@ const ExperienceNode = ({ exp, company, color = "blue", side = "left", link }) =
   };
 
   return (
-    <div className={`relative flex items-center justify-center w-full mb-16 md:mb-32 last:mb-0 md:flex-row flex-col ${
-      side === "right" ? "md:flex-row-reverse" : ""
-    }`}>
-      
+    <div className={`relative flex items-center justify-center w-full mb-16 md:mb-32 last:mb-0 md:flex-row flex-col ${side === "right" ? "md:flex-row-reverse" : ""
+      }`}>
+
       {/* Node Content (Pill/Card) */}
       <div className={`w-full md:w-1/2 flex justify-center ${side === "right" ? "md:justify-start" : "md:justify-end"}`}>
         <motion.div
-           layout
-           initial={{ opacity: 0, x: side === "left" ? -50 : 50 }}
-           whileInView={{ opacity: 1, x: 0 }}
-           viewport={{ once: true }}
-           onMouseEnter={() => setIsHovered(true)}
-           onMouseLeave={() => setIsHovered(false)}
-           animate={{
-             borderRadius: isHovered ? "24px" : "100px",
-           }}
-           transition={{
-             layout: { duration: 0.6, ease: [0.23, 1, 0.32, 1] },
-             borderRadius: { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
-           }}
-           className={`node-pill w-[calc(100%-32px)] md:w-full md:max-w-[500px] mx-auto md:mx-0 shadow-2xl z-20 flex-col !items-stretch overflow-hidden ${themeColors[color]} ${
-             side === "left" ? "md:mr-16" : "md:ml-16"
-           }`}
+          layout
+          initial={{ opacity: 0, x: side === "left" ? -50 : 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          animate={{
+            borderRadius: isHovered ? "24px" : "100px",
+          }}
+          transition={{
+            layout: { duration: 0.6, ease: [0.23, 1, 0.32, 1] },
+            borderRadius: { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
+          }}
+          className={`node-pill w-[calc(100%-32px)] md:w-full md:max-w-[500px] mx-auto md:mx-0 shadow-2xl z-20 flex-col !items-stretch overflow-hidden ${themeColors[color]} ${side === "left" ? "md:mr-16" : "md:ml-16"
+            }`}
         >
           {/* Header Area (Always Visible) */}
           <div className="flex items-center gap-4 p-5">
-             <div className={`status-dot shrink-0 ${dotColors[color]}`} />
-             <div className="flex-1 min-w-0">
-                <h4 className="font-black text-xs xs:text-base uppercase tracking-wider truncate">{exp.role}</h4>
-                <div className="flex flex-col md:flex-row md:items-center justify-between mt-1 gap-2">
-                  {link ? (
-                    <a 
-                      href={link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-[11px] font-black uppercase tracking-tight text-blue-400 hover:text-white transition-colors"
-                    >
-                      {company}
-                    </a>
-                  ) : (
-                    <p className="text-[11px] opacity-80 font-bold uppercase tracking-tight text-slate-300">{company}</p>
-                  )}
-                  <span className="text-[10px] font-black uppercase tracking-widest opacity-80 bg-white/10 px-3 py-1 rounded-md border border-white/10 w-fit">{exp.duration}</span>
-                </div>
-             </div>
+            <div className={`status-dot shrink-0 ${dotColors[color]}`} />
+            <div className="flex-1 min-w-0">
+              <h4 className="font-black text-xs xs:text-base uppercase tracking-wider truncate">{exp.role}</h4>
+              <div className="flex flex-col md:flex-row md:items-center justify-between mt-1 gap-2">
+                {link ? (
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-black uppercase tracking-tight text-blue-400 hover:text-white transition-colors"
+                  >
+                    {company}
+                  </a>
+                ) : (
+                  <p className="text-[11px] opacity-80 font-bold uppercase tracking-tight text-slate-300">{company}</p>
+                )}
+                <span className="text-[10px] font-black uppercase tracking-widest opacity-80 bg-white/10 px-3 py-1 rounded-md border border-white/10 w-fit">{exp.duration}</span>
+              </div>
+            </div>
           </div>
 
           {/* Details Area (Expands on Hover) */}
@@ -75,7 +73,7 @@ const ExperienceNode = ({ exp, company, color = "blue", side = "left", link }) =
                 className="overflow-hidden"
               >
                 <div className="px-8 pb-8 pt-4 border-t border-white/5 bg-white/[0.03]">
-                   <ul className="space-y-4">
+                  <ul className="space-y-4">
                     {exp.contributions.map((c, i) => (
                       <li key={i} className="text-[13px] text-slate-300 leading-relaxed flex items-start gap-3">
                         <FiCheckCircle className={`mt-1 shrink-0 ${themeColors[color].split(' ')[0]}`} />
@@ -97,15 +95,15 @@ const ExperienceNode = ({ exp, company, color = "blue", side = "left", link }) =
 
       {/* Central Connector Dot (On the Spine) */}
       <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slate-950 border-2 border-slate-700 z-30 hidden md:block">
-         <div className={`absolute inset-1 rounded-full ${dotColors[color]} transition-transform duration-500 group-hover:scale-150`} />
+        <div className={`absolute inset-1 rounded-full ${dotColors[color]} transition-transform duration-500 group-hover:scale-150`} />
       </div>
 
       {/* Side Brand Hint */}
       <div className={`hidden md:block w-1/2 px-16 ${side === "right" ? "text-right pr-28" : "text-left pl-28"}`}>
-          <div className="opacity-10 group-hover:opacity-40 transition-all duration-500 scale-90 group-hover:scale-100">
-             <FiBriefcase className="inline-block mr-3 text-xl" />
-             <span className="text-xs font-black uppercase tracking-[0.5em]">{company}</span>
-          </div>
+        <div className="opacity-10 group-hover:opacity-40 transition-all duration-500 scale-90 group-hover:scale-100">
+          <FiBriefcase className="inline-block mr-3 text-xl" />
+          <span className="text-xs font-black uppercase tracking-[0.5em]">{company}</span>
+        </div>
       </div>
     </div>
   );
@@ -116,7 +114,7 @@ const Experience = ({ content, darkMode, isRightPanelOpen, isSidebarCollapsed })
 
   return (
     <div className="w-full max-w-7xl mx-auto py-10 md:py-16 px-4 md:px-8 custom-scrollbar h-full overflow-y-auto overflow-x-hidden">
-      
+
       {/* Header */}
       <div className={`mb-16 md:mb-32 text-center ${isRightPanelOpen ? 'max-w-[80%] mx-auto' : ''}`}>
         <motion.div
@@ -141,19 +139,19 @@ const Experience = ({ content, darkMode, isRightPanelOpen, isSidebarCollapsed })
         <div className="relative space-y-16 md:space-y-40">
           {content.content.map((company, cIdx) => (
             <div key={cIdx}>
-                {company.roles.map((role, rIdx) => {
-                  const globalIdx = cIdx + rIdx;
-                  return (
-                    <ExperienceNode 
-                      key={rIdx} 
-                      exp={role} 
-                      company={company.company} 
-                      link={company.link}
-                      color={colors[cIdx % colors.length]}
-                      side={globalIdx % 2 === 0 ? "left" : "right"}
-                    />
-                  );
-                })}
+              {company.roles.map((role, rIdx) => {
+                const globalIdx = cIdx + rIdx;
+                return (
+                  <ExperienceNode
+                    key={rIdx}
+                    exp={role}
+                    company={company.company}
+                    link={company.link}
+                    color={colors[cIdx % colors.length]}
+                    side={globalIdx % 2 === 0 ? "left" : "right"}
+                  />
+                );
+              })}
             </div>
           ))}
         </div>

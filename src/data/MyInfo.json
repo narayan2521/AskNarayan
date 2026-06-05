@@ -1,0 +1,314 @@
+{
+    "profile": {
+        "name": "Narayan Prasad",
+        "preferredName": "Narayan",
+        "designation": "Software Design Engineer II",
+        "role": "Frontend Engineer",
+        "experience": "3+ Years",
+        "location": "Vijayawada, Andhra Pradesh, India",
+        "education": {
+            "degree": "Bachelor of Technology",
+            "branch": "Computer Science",
+            "college": "Nalanda Institute of Technology, Bhubaneswar",
+            "graduationYear": "2022"
+        },
+        "certifications": [
+            {
+                "name": "Java Full Stack Development",
+                "provider": "JSpiders"
+            }
+        ]
+    },
+    "about": {
+        "summary": "Frontend Engineer with 3+ years of experience building enterprise dashboards, AI-powered applications, and scalable web platforms. Skilled in React, JavaScript, frontend architecture, API integrations, responsive design, and enterprise application development. Experienced in leading frontend initiatives, collaborating with cross-functional teams, and delivering customer-focused solutions across enterprise and SaaS products.",
+        "careerObjective": "To build impactful products, grow into a senior frontend engineering role, and contribute to scalable, high-quality software solutions while continuously improving technical and leadership skills.",
+        "professionalIdentity": "Frontend Engineer with strong experience in enterprise applications, AI-powered platforms, dashboard development, and product-focused engineering."
+    },
+    "careerJourney": {
+        "2023": {
+            "role": "Software Trainee",
+            "focus": "Frontend fundamentals, dashboard development, enterprise client implementations"
+        },
+        "2024": {
+            "role": "Software Design Engineer I",
+            "focus": "React development, web applications, API integrations, WordPress integration, enterprise solutions"
+        },
+        "2025": {
+            "role": "Software Design Engineer II",
+            "focus": "Frontend leadership, AI-powered products, product ownership, architecture discussions"
+        }
+    },
+    "strengths": [
+        "Frontend Architecture",
+        "JavaScript Development",
+        "React Development",
+        "Problem Solving",
+        "Rapid MVP Delivery",
+        "Enterprise Dashboard Development",
+        "Product Thinking",
+        "UI Engineering",
+        "API Integration",
+        "Debugging and Troubleshooting",
+        "Cross-Team Collaboration",
+        "Feature Ownership",
+        "Technical Leadership"
+    ],
+    "skills": {
+        "frontend": [
+            "HTML5",
+            "CSS3",
+            "JavaScript (ES6+)",
+            "TypeScript (Basic)",
+            "React",
+            "React Router",
+            "Redux Toolkit",
+            "React Context API",
+            "Sass/SCSS"
+        ],
+        "webDevelopment": [
+            "Responsive Web Design",
+            "Cross Browser Compatibility",
+            "Accessibility (WCAG, ARIA)",
+            "Performance Optimization",
+            "REST API Integration",
+            "GraphQL Fundamentals",
+            "Authentication & Authorization",
+            "Component Based Architecture",
+            "Progressive Web Apps"
+        ],
+        "libraries": [
+            "Axios",
+            "Yup",
+            "Framer Motion",
+            "Chart.js"
+        ],
+        "buildTools": [
+            "Vite",
+            "Parcel",
+            "Babel",
+            "npm"
+        ],
+        "cloudAndDeployment": [
+            "Microsoft Azure",
+            "Vercel",
+            "Netlify",
+            "CI/CD Concepts"
+        ],
+        "databases": [
+            "MongoDB",
+            "PostgreSQL",
+            "MySQL",
+            "Supabase",
+            "IndexedDB",
+            "LocalStorage",
+            "SessionStorage"
+        ],
+        "tools": [
+            "Git",
+            "GitHub",
+            "GitLab",
+            "Figma",
+            "Postman",
+            "Chrome DevTools",
+            "Swagger/OpenAPI"
+        ]
+    },
+    "leadership": {
+        "currentRole": "Frontend Lead",
+        "leadProjects": [
+            "Talent Forge",
+            "Vertex Editor"
+        ],
+        "responsibilities": [
+            "Frontend Planning",
+            "Technical Guidance",
+            "Feature Ownership",
+            "Architecture Discussions",
+            "Stakeholder Collaboration",
+            "Team Coordination",
+            "Solution Design"
+        ]
+    },
+    "experience": [
+        {
+            "company": "PhenomCloud Pvt Ltd",
+            "designation": "Software Design Engineer II",
+            "duration": "Oct 2025 - Present",
+            "keyHighlights": [
+                "Leading frontend initiatives for AI-powered products",
+                "Frontend owner for Talent Forge",
+                "Frontend owner for Vertex Editor",
+                "Contributing to product decisions and architecture discussions",
+                "Driving feature implementation and delivery"
+            ]
+        },
+        {
+            "company": "PhenomCloud Pvt Ltd",
+            "designation": "Software Design Engineer I",
+            "duration": "Aug 2024 - Sep 2025",
+            "keyHighlights": [
+                "Developed enterprise web applications",
+                "Implemented WordPress integrations",
+                "Built React applications",
+                "Worked on SHRM, VW Germany, VW Retail and VW Small Markets dashboards",
+                "Contributed to a Generative AI project"
+            ]
+        },
+        {
+            "company": "PhenomCloud Pvt Ltd",
+            "designation": "Software Trainee",
+            "duration": "May 2023 - Jul 2024",
+            "keyHighlights": [
+                "Built enterprise dashboards",
+                "Worked with HTML, CSS, JavaScript and jQuery",
+                "Delivered customized client dashboards",
+                "Supported onboarding of new enterprise clients"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "Talent Forge",
+            "category": "AI Product",
+            "role": "Frontend Lead",
+            "status": "Active",
+            "team": {
+                "developers": 3,
+                "testers": 2,
+                "projectManager": 1
+            },
+            "description": "AI-powered Job Description management platform designed for HRs, Managers and Admins.",
+            "contributions": [
+                "Built approximately 90% of the UI",
+                "Led frontend development",
+                "Delivered MVP in one month",
+                "Participated in product discussions",
+                "Worked directly with PM and QA teams",
+                "Implemented responsive UI and workflows"
+            ],
+            "achievement": "Introduced JD Change Tracking feature before full versioning implementation.",
+            "businessImpact": "Improved transparency by highlighting modified content, editor information, and timestamps across the organization."
+        },
+        {
+            "name": "Vertex Editor",
+            "category": "AI Product",
+            "role": "Frontend Lead",
+            "status": "Active",
+            "team": {
+                "developers": 2,
+                "testers": 2
+            },
+            "description": "AI-powered dashboard builder that enables users to create dashboards through natural language interactions.",
+            "contributions": [
+                "Built approximately 60% of the frontend",
+                "Implemented dashboard customization workflows",
+                "Developed reusable components",
+                "Worked on responsive layouts",
+                "Integrated APIs and data visualization capabilities",
+                "Supported solution design and implementation"
+            ]
+        },
+        {
+            "name": "Finwickers",
+            "category": "Financial Services",
+            "role": "Frontend Developer",
+            "description": "Financial services platform.",
+            "contributions": [
+                "Implemented WordPress blog system",
+                "Integrated WordPress APIs",
+                "Created responsive frontend interfaces"
+            ]
+        }
+    ],
+    "enterpriseClients": [
+        "Volkswagen Germany",
+        "Volkswagen Retail",
+        "Volkswagen Small Markets",
+        "SHRM",
+        "IHG Hotels & Resorts",
+        "Zscaler",
+        "Daiichi Sankyo",
+        "Dr. Reddy's Laboratories",
+        "HBF Health"
+    ],
+    "industries": [
+        "Human Resources",
+        "Hospitality",
+        "Healthcare",
+        "Pharmaceuticals",
+        "Automotive",
+        "Cybersecurity",
+        "Financial Services",
+        "Learning Platforms",
+        "Enterprise SaaS"
+    ],
+    "achievements": [
+        {
+            "title": "Career Growth",
+            "description": "Promoted from Software Trainee to Software Design Engineer I and later to Software Design Engineer II within approximately 2.5 years."
+        },
+        {
+            "title": "Talent Forge MVP",
+            "description": "Led frontend delivery and contributed approximately 90% of the UI for the MVP release."
+        },
+        {
+            "title": "JD Change Tracking",
+            "description": "Designed and implemented a lightweight version tracking solution before full versioning implementation."
+        },
+        {
+            "title": "Enterprise Dashboard Delivery",
+            "description": "Delivered and customized 10+ enterprise dashboards for global organizations."
+        }
+    ],
+    "currentFocus": {
+        "careerGoal": "Transition into a high-impact Frontend Engineer role in a product-focused organization.",
+        "currentlyLearning": [
+            "Advanced JavaScript",
+            "React Internals",
+            "Frontend System Design",
+            "TypeScript",
+            "Testing Frameworks"
+        ]
+    },
+    "personalInterests": [
+        "Frontend Engineering",
+        "AI Applications",
+        "Product Development",
+        "Fitness",
+        "Continuous Learning",
+        "Problem Solving"
+    ],
+    "frequentlyAskedQuestions": [
+        {
+            "question": "How many years of experience does Narayan have?",
+            "answer": "Narayan has over 3 years of professional frontend development experience."
+        },
+        {
+            "question": "What technologies does Narayan specialize in?",
+            "answer": "Narayan primarily specializes in React, JavaScript, HTML, CSS, API integrations, and enterprise application development."
+        },
+        {
+            "question": "Has Narayan worked on AI products?",
+            "answer": "Yes. Narayan has contributed to AI-powered platforms including Talent Forge and Vertex Editor."
+        },
+        {
+            "question": "Does Narayan have leadership experience?",
+            "answer": "Yes. Narayan currently leads frontend initiatives for Talent Forge and Vertex Editor while collaborating with developers, testers, and project managers."
+        },
+        {
+            "question": "What type of companies has Narayan worked with?",
+            "answer": "Narayan has worked with organizations across automotive, healthcare, hospitality, HR, cybersecurity, financial services, and pharmaceutical industries."
+        }
+    ],
+    "aiAssistantInstructions": {
+        "personality": "Professional, confident, and conversational",
+        "responseStyle": "Concise but informative",
+        "importantRules": [
+            "Only answer using information present in the knowledge base.",
+            "Do not exaggerate skills or experience.",
+            "Do not claim expertise in technologies not used professionally.",
+            "Highlight leadership, product ownership, and frontend expertise when relevant.",
+            "Provide examples from actual projects whenever possible."
+        ]
+    }
+}

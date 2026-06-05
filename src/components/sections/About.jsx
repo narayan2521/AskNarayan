@@ -237,17 +237,17 @@ const About = ({ content }) => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24"
+        className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16 md:mb-24"
       >
         {/* Left Side: Content */}
-        <div className="lg:col-span-7 space-y-8">
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h4 className="flex items-center gap-2 text-xl font-medium text-blue-500">
-              <span className="text-2xl animate-bounce">👋</span> Hey There!
+        <div className="lg:col-span-7 space-y-6 md:space-y-8 order-2 lg:order-1 mt-8 lg:mt-0">
+          <motion.div variants={itemVariants} className="space-y-3 md:space-y-4">
+            <h4 className="flex items-center gap-2 text-lg md:text-xl font-medium text-blue-500">
+              <span className="text-xl md:text-2xl animate-bounce">👋</span> Hey There!
             </h4>
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-black tracking-tight leading-tight px-1">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight px-1">
               My Name Is <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 decoration-4 md:decoration-8 underline-offset-4 underline decoration-blue-500/20">Narayan</span>, 
-              <br className="hidden md:block" />
+              <br className="hidden sm:block" />
               UI Team Lead & Engineer.
             </h1>
           </motion.div>
@@ -275,7 +275,7 @@ const About = ({ content }) => {
         </div>
 
         {/* Right Side: Visual Hero */}
-        <div className="lg:col-span-5 relative">
+        <div className="lg:col-span-5 relative order-1 lg:order-2 px-4 sm:px-8 lg:px-0 max-w-[400px] lg:max-w-none mx-auto w-full">
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -314,9 +314,9 @@ const About = ({ content }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 space-y-4"
+          className="text-center mb-10 md:mb-16 space-y-3 md:space-y-4"
         >
-          <h2 className="text-3xl md:text-5xl font-black tracking-tighter px-4">
+          <h2 className="text-2xl xs:text-3xl md:text-5xl font-black tracking-tighter px-4">
             Tech Ecosystem & Mastering Tools
           </h2>
           <p className="text-slate-400 uppercase tracking-[0.3em] font-semibold text-sm">

@@ -137,7 +137,7 @@ const Education = ({ content, darkMode, isRightPanelOpen }) => {
   };
 
   return (
-    <div className={`w-full min-h-[600px] lg:h-[650px] relative overflow-hidden rounded-3xl border ${darkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-white/50 border-slate-200'} backdrop-blur-sm`}>
+    <div className={`w-full h-auto min-h-[500px] lg:min-h-[650px] flex flex-col relative overflow-hidden rounded-3xl border ${darkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-white/50 border-slate-200'} backdrop-blur-sm`}>
       
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -208,20 +208,20 @@ const Education = ({ content, darkMode, isRightPanelOpen }) => {
                   </motion.div>
 
                   {/* Title */}
-                  <h2 className={`text-xl xs:text-2xl md:text-3xl font-black leading-[1.15] ${darkMode ? 'text-white' : 'text-slate-900'} whitespace-normal break-words max-w-full tracking-tight`}>
+                  <h2 className={`text-xl md:text-3xl font-black leading-tight ${darkMode ? 'text-white' : 'text-slate-900'} whitespace-normal break-words tracking-tight`}>
                     {educationData[activeIndex].degree}
                   </h2>
 
                   {/* Institution */}
-                  <div className={`flex items-start gap-2 text-base md:text-xl ${darkMode ? 'text-slate-300' : 'text-slate-600'} whitespace-normal break-words`}>
+                  <div className={`flex items-start gap-2 text-sm md:text-xl ${darkMode ? 'text-slate-300' : 'text-slate-600'} whitespace-normal break-words`}>
                     <FiMapPin className="text-blue-500 mt-1 shrink-0" />
                     <span className="font-semibold leading-snug">{educationData[activeIndex].university}</span>
                   </div>
 
                   {/* Year */}
                   <div className={`flex items-center gap-2 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    <FiCalendar className="text-purple-500" />
-                    <span className="font-medium text-lg">Class of {educationData[activeIndex].year}</span>
+                    <FiCalendar className="text-purple-500 shrink-0" />
+                    <span className="font-medium text-sm md:text-lg">Class of {educationData[activeIndex].year}</span>
                   </div>
 
                   {/* Stats Row */}
@@ -294,7 +294,7 @@ const Education = ({ content, darkMode, isRightPanelOpen }) => {
           {/* Bottom: Selection Cards - Grid of icons on mobile, Cards on desktop */}
           <div className="mt-auto pt-4 md:pt-8 border-t border-slate-700/20">
             {/* Mobile/Tablet Grid View */}
-            <div className="flex lg:hidden justify-center gap-4 mb-6">
+            <div className="flex lg:hidden justify-center gap-3 md:gap-4 mb-4 flex-wrap">
               {educationData.map((edu, idx) => {
                 const isActive = idx === activeIndex;
                 return (
