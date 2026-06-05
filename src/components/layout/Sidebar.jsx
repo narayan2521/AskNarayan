@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, sections, meta, isCollapsed, setIsCollapsed }) => {
+const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, sections, meta, isCollapsed, setIsCollapsed, isMobileOpen, setIsMobileOpen }) => {
   
   // Icon mapping for navigation
   const getIcon = (id) => {
@@ -26,14 +26,28 @@ const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, section
   };
 
   return (
-    <motion.aside
-      animate={{ width: isCollapsed ? 80 : 256 }}
-      transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className={`fixed top-0 left-0 h-full z-30 transition-all duration-500 overflow-hidden hidden lg:flex ${
-        darkMode ? 'bg-[#0a0a0c] border-r border-white/5' : 'bg-[#f4f7f9] border-r border-slate-200'
-      }`}
-    >
-      <div className="flex flex-col h-full py-8">
+    <>
+      {/* Mobile Backdrop */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMobileOpen(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.aside
+        animate={{ width: isCollapsed && !isMobileOpen ? 80 : 256 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+        className={`fixed top-0 left-0 h-full z-50 transition-transform duration-500 overflow-hidden flex flex-col ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} ${
+          darkMode ? 'bg-[#0a0a0c] border-r border-white/5' : 'bg-[#f4f7f9] border-r border-slate-200'
+        }`}
+      >
+        <div className="flex flex-col h-full py-8 overflow-y-auto custom-scrollbar">
         
         {/* Toggle & Logo Section */}
         <div className={`px-6 mb-12 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
@@ -52,9 +66,17 @@ const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, section
           )}
           <button 
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className={`p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors ${isCollapsed ? 'mb-4' : ''}`}
+            className={`hidden lg:flex p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors items-center justify-center ${isCollapsed ? 'mb-4' : ''}`}
           >
             {isCollapsed ? <FiMenu size={20} /> : <FiX size={20} />}
+          </button>
+          
+          {/* Mobile Close Button */}
+          <button 
+            onClick={() => setIsMobileOpen(false)}
+            className={`lg:hidden p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center justify-center`}
+          >
+            <FiX size={20} />
           </button>
         </div>
 
@@ -136,6 +158,7 @@ const Sidebar = ({ darkMode, setDarkMode, activeSection, handleNavClick, section
         </div>
       </div>
     </motion.aside>
+    </>
   );
 };
 

@@ -47,9 +47,9 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
     const handleResize = () => {
         let baseRadius = 280;
         if (window.innerWidth < 480) {
-            baseRadius = 100;
+            baseRadius = 120; // Slightly larger to avoid inner orbit crowding
         } else if (window.innerWidth < 768) {
-            baseRadius = 140;
+            baseRadius = 160;
         } else if (window.innerWidth < 1024) {
             baseRadius = 200;
         } else if (window.innerWidth < 1536) {
@@ -84,18 +84,18 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
   const outerOrbitSkills = orbitSkills.slice(7);
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-8 lg:py-24 px-4 sm:px-8 lg:px-16 h-full flex items-center overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full">
+    <div className="w-full max-w-7xl mx-auto py-8 lg:py-12 px-4 sm:px-8 lg:px-16 h-full flex items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full overflow-hidden relative">
         
         {/* Left Panel: Content (5/12 cols) */}
-        <div className="lg:col-span-5 space-y-8 lg:space-y-10 order-2 lg:order-1 text-center lg:text-left">
+        <div className="lg:col-span-5 space-y-6 lg:space-y-10 order-2 lg:order-1 text-center lg:text-left z-10 relative">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-blue-500 text-[9px] lg:text-[11px] font-black tracking-[0.4em] uppercase mb-4 block underline decoration-2 underline-offset-8">Tech Ecosystem</span>
-            <h2 className="text-3xl xs:text-5xl md:text-7xl lg:text-7xl font-black tracking-tighter mb-6 lg:mb-10 leading-[0.85] py-2 px-2">
+            <span className="text-blue-500 text-[10px] lg:text-[11px] font-black tracking-[0.4em] uppercase mb-3 block underline decoration-2 underline-offset-8">Tech Ecosystem</span>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter mb-8 lg:mb-10 leading-[0.85] py-2 px-2">
               My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">Skills.</span>
             </h2>
             
@@ -105,18 +105,18 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
                    initial={{ opacity: 0, y: 20 }}
                    animate={{ opacity: 1, y: 0 }}
                    exit={{ opacity: 0, y: -20 }}
-                   className="p-8 lg:p-10 rounded-[32px] bg-slate-900/40 border border-white/10 backdrop-blur-3xl relative group mb-10 shadow-2xl"
+                   className="relative group mb-10"
                 >
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-[100px]" />
-                    <div className="flex flex-col gap-6 md:gap-8 relative z-10">
-                        <div className="flex items-center gap-6 md:gap-8 border-b border-white/5 pb-6 md:pb-8">
-                            <div className="p-3 md:p-5 rounded-2xl bg-white/5 border border-white/10 shadow-inner group-hover:scale-105 transition-transform duration-500">
-                                <SkillIcon iconName={activeSkill.icon} colorClass={activeSkill.color} className="text-4xl md:text-7xl" />
+                   <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-[100px]" />
+                    <div className="flex flex-col gap-5 md:gap-8 relative z-10">
+                        <div className="flex items-center gap-4 md:gap-8 border-b border-white/5 pb-5 md:pb-8">
+                            <div className="p-3 md:p-5 rounded-2xl bg-white/5 border border-white/10 shadow-inner group-hover:scale-105 transition-transform duration-500 shrink-0">
+                                <SkillIcon iconName={activeSkill.icon} colorClass={activeSkill.color} className="text-3xl md:text-7xl" />
                             </div>
-                            <div className="text-left">
-                                <h3 className="text-xl xs:text-2xl md:text-4xl font-black uppercase tracking-tighter text-white mb-2 leading-none">{activeSkill.name}</h3>
+                            <div className="text-left overflow-hidden">
+                                <h3 className="text-xl md:text-4xl font-black uppercase tracking-tighter text-white mb-1 md:mb-2 leading-tight truncate">{activeSkill.name}</h3>
                                 <div className="flex items-center gap-2 md:gap-3 text-blue-400 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] opacity-80">
-                                    <FiCpu className="animate-pulse" /> Core Tech
+                                    <FiCpu className="animate-pulse shrink-0" /> <span className="truncate">Core Tech</span>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ const Skills = ({ content, darkMode, onNavigate, isRightPanelOpen, isSidebarColl
         </div>
 
         {/* Right Panel: Dual Orbital Visual (7/12 cols) */}
-        <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center items-center h-[300px] sm:h-[500px] md:h-[700px] lg:h-[900px] pointer-events-auto overflow-hidden">
+        <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center items-center h-[300px] sm:h-[450px] md:h-[500px] lg:h-[600px] pointer-events-auto z-10">
             {/* Background Decorative Rings */}
             <div className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-20">
                 <div className="w-[300px] lg:w-[400px] h-[300px] lg:h-[400px] rounded-full border border-dashed border-white/20 animate-[spin_80s_linear_infinite]" />

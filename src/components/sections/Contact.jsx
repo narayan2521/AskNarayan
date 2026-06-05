@@ -205,11 +205,11 @@ const AnimatedInput = ({ label, type = 'text', name, placeholder, value, onChang
     >
       <motion.label
         animate={{
-          y: isFocused || value ? -24 : 0,
-          scale: isFocused || value ? 0.85 : 1,
+          y: isFocused || value ? -12 : 0,
+          scale: isFocused || value ? 0.75 : 1,
           color: isFocused ? '#6366f1' : '#94a3b8'
         }}
-        className="absolute left-4 top-4 font-semibold pointer-events-none origin-left transition-colors"
+        className="absolute left-4 top-4 font-semibold pointer-events-none origin-left transition-colors z-10"
       >
         {label}
       </motion.label>
@@ -262,8 +262,8 @@ const AnimatedTextarea = ({ label, name, placeholder, value, onChange, delay = 0
     >
       <motion.label
         animate={{
-          y: isFocused || value ? -24 : 0,
-          scale: isFocused || value ? 0.85 : 1,
+          y: isFocused || value ? -12 : 0,
+          scale: isFocused || value ? 0.75 : 1,
           color: isFocused ? '#6366f1' : '#94a3b8'
         }}
         className="absolute left-4 top-4 font-semibold pointer-events-none origin-left transition-colors z-10"
@@ -508,7 +508,7 @@ const Contact = ({ content, darkMode }) => {
           </motion.div>
 
           {/* Title with AI Effect */}
-          <h2 className="text-3xl xs:text-5xl md:text-7xl font-black mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-white via-indigo-200 to-cyan-200 bg-clip-text text-transparent">
               Let's Build Something
             </span>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSend, FiUser, FiCpu, FiArrowRight } from 'react-icons/fi';
+import ReactMarkdown from 'react-markdown';
+import { getAIResponse } from '../../services/aiService';
 
 const TypingMessage = ({ text, onComplete }) => {
   const [displayedText, setDisplayedText] = useState('');
@@ -22,8 +24,8 @@ const TypingMessage = ({ text, onComplete }) => {
   }, [text]);
 
   return (
-    <div className="flex flex-col">
-      <div dangerouslySetInnerHTML={{ __html: displayedText }} />
+    <div className="flex flex-col ai-markdown">
+      <ReactMarkdown>{displayedText}</ReactMarkdown>
       {isTyping && (
         <motion.span
           animate={{ opacity: [1, 0] }}
@@ -60,30 +62,61 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
     setInputValue('');
     setIsTyping(true);
 
-    // AI Logic
-    setTimeout(() => {
-      const lowerText = text.toLowerCase();
-      let response = content.content.fallback;
-      let redirect = null;
+    // Fetch AI response
+    const fetchAIResponse = async () => {
+      try {
+        // Exclude messages that have redirect tags or system messages from history to keep it clean
+        const historyForAI = messages.filter(m => !m.isNew);
 
-      // Simple keyword matching
-      for (const item of content.content.qa) {
-        if (item.keywords.some(kw => lowerText.includes(kw))) {
-          response = item.answer;
-          redirect = item.redirect; // Capture the redirect target
-          break;
+        const responseText = await getAIResponse(text, historyForAI);
+
+        let finalResponse = responseText;
+        let redirect = null;
+
+        // Extract redirect token if AI outputted one
+        const redirectMatch = finalResponse.match(/\[REDIRECT:([a-z]+)\]/i);
+        if (redirectMatch) {
+          redirect = redirectMatch[1].toLowerCase();
+          finalResponse = finalResponse.replace(redirectMatch[0], '').trim();
         }
-      }
 
-      setMessages(prev => [...prev, { 
-        id: Date.now() + 1, 
-        type: 'ai', 
-        text: response, 
-        isNew: true,
-        redirect: redirect // Add redirect to message data
-      }]);
-      setIsTyping(false);
-    }, 1000);
+        setMessages(prev => [...prev, {
+          id: Date.now() + 1,
+          type: 'ai',
+          text: finalResponse,
+          isNew: true,
+          redirect: redirect
+        }]);
+        setIsTyping(false);
+      } catch (error) {
+        console.log("Falling back to static response due to AI error...");
+        const lowerText = text.toLowerCase();
+        let fallbackResponse = content.content.fallback;
+        let fallbackRedirect = null;
+
+        // Simple keyword matching
+        if (content?.content?.qa) {
+          for (const item of content.content.qa) {
+            if (item.keywords.some(kw => lowerText.includes(kw))) {
+              fallbackResponse = item.answer;
+              fallbackRedirect = item.redirect; 
+              break;
+            }
+          }
+        }
+
+        setMessages(prev => [...prev, { 
+          id: Date.now() + 1, 
+          type: 'ai', 
+          text: fallbackResponse, 
+          isNew: true,
+          redirect: fallbackRedirect 
+        }]);
+        setIsTyping(false);
+      }
+    };
+
+    fetchAIResponse();
   };
 
   const handleSuggestionClick = (suggestion) => {
@@ -105,43 +138,40 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
               className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div className={`flex items-start max-w-[85%] space-x-3 ${msg.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                  msg.type === 'user' 
-                    ? 'bg-blue-600 text-white' 
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${msg.type === 'user'
+                    ? 'bg-blue-600 text-white'
                     : (darkMode ? 'bg-slate-800 text-blue-400' : 'bg-slate-200 text-blue-600')
-                }`}>
+                  }`}>
                   {msg.type === 'user' ? <FiUser size={16} /> : <FiCpu size={16} />}
                 </div>
-                
-                <div className={`px-4 py-3 rounded-2xl text-sm md:text-base ${
-                  msg.type === 'user'
+
+                <div className={`px-4 py-3 rounded-2xl text-sm md:text-base ${msg.type === 'user'
                     ? 'bg-blue-600 text-white rounded-tr-none shadow-lg'
-                    : (darkMode 
-                        ? 'bg-slate-800/80 text-slate-200 border border-white/5 rounded-tl-none shadow-xl' 
-                        : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-md')
-                }`}>
+                    : (darkMode
+                      ? 'bg-slate-800/80 text-slate-200 border border-white/5 rounded-tl-none shadow-xl'
+                      : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-md')
+                  }`}>
                   {msg.type === 'ai' && msg.isNew ? (
                     <TypingMessage text={msg.text} onComplete={() => {
-                        setMessages(prev => prev.map(m => m.id === msg.id ? { ...m, isNew: false } : m));
+                      setMessages(prev => prev.map(m => m.id === msg.id ? { ...m, isNew: false } : m));
                     }} />
                   ) : (
-                    <div className="space-y-3">
-                        <div dangerouslySetInnerHTML={{ __html: msg.text }} />
-                        {msg.redirect && !msg.isNew && (
-                            <motion.button
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                onClick={() => handleNavClick(msg.redirect)}
-                                className={`mt-2 flex items-center space-x-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 border ${
-                                    darkMode 
-                                    ? 'bg-blue-600/10 border-blue-500/30 text-blue-400 hover:bg-blue-600/20' 
-                                    : 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
-                                }`}
-                            >
-                                <span>Know More</span>
-                                <FiArrowRight size={12} />
-                            </motion.button>
-                        )}
+                    <div className="space-y-3 ai-markdown">
+                      <ReactMarkdown>{msg.text}</ReactMarkdown>
+                      {msg.redirect && !msg.isNew && (
+                        <motion.button
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          onClick={() => handleNavClick(msg.redirect)}
+                          className={`mt-2 flex items-center space-x-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 border ${darkMode
+                              ? 'bg-blue-600/10 border-blue-500/30 text-blue-400 hover:bg-blue-600/20'
+                              : 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                            }`}
+                        >
+                          <span>Know More</span>
+                          <FiArrowRight size={12} />
+                        </motion.button>
+                      )}
                     </div>
                   )}
                 </div>
@@ -172,11 +202,10 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
             key={i}
             onClick={() => handleSuggestionClick(s)}
             disabled={isBusy}
-            className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all duration-300 border ${
-              darkMode 
-                ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-400' 
+            className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all duration-300 border ${darkMode
+                ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-400'
                 : 'bg-white border-slate-200 text-slate-500 hover:border-blue-500 hover:text-blue-600 shadow-sm'
-            }`}
+              }`}
           >
             {s}
           </button>
@@ -200,11 +229,10 @@ const Chat = ({ content, darkMode, messages, setMessages, handleNavClick }) => {
             <button
               onClick={() => handleSend(inputValue)}
               disabled={!inputValue.trim() || isBusy}
-              className={`p-2 md:p-3 mr-1.5 md:mr-3 rounded-xl transition-all duration-300 ${
-                inputValue.trim() && !isBusy
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:scale-105 active:scale-95' 
+              className={`p-2 md:p-3 mr-1.5 md:mr-3 rounded-xl transition-all duration-300 ${inputValue.trim() && !isBusy
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:scale-105 active:scale-95'
                   : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'
-              }`}
+                }`}
             >
               <FiSend size={14} className="md:w-[18px] md:h-[18px]" />
             </button>

@@ -25,6 +25,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(portfolioData.ui.darkMode);
   const [showLanding, setShowLanding] = useState(true);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true);
   const [chatMessages, setChatMessages] = useState([
     { id: 1, type: 'ai', text: portfolioData.sections.chat.content.welcomeMessage, isNew: true }
@@ -134,11 +135,13 @@ function App() {
         darkMode={darkMode} 
         setDarkMode={setDarkMode} 
         activeSection={activeSection}
-        handleNavClick={handleNavClick}
+        handleNavClick={(id) => { handleNavClick(id); setIsMobileSidebarOpen(false); }}
         sections={sections}
         meta={portfolioData.meta}
         isCollapsed={isSidebarCollapsed}
         setIsCollapsed={setIsSidebarCollapsed}
+        isMobileOpen={isMobileSidebarOpen}
+        setIsMobileOpen={setIsMobileSidebarOpen}
       />
 
       {/* Main Content Area */}
@@ -161,6 +164,12 @@ function App() {
           {/* Header Bar */}
           <header className="px-8 py-6 flex items-center justify-between border-b border-white/10 dark:border-white/5">
             <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setIsMobileSidebarOpen(true)}
+                className="lg:hidden p-2 -ml-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+              >
+                <FiChevronRight className="w-6 h-6" />
+              </button>
               <h2 className="text-xl font-black tracking-tight capitalize select-none opacity-80">
                 {activeSection === 'chat' ? 'AI Assistant' : activeSection}
               </h2>
